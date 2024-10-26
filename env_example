@@ -1,0 +1,7 @@
+PORT=8000
+EMAIL_PORT=556
+EMAIL_HOST=smtp.gmail.com
+EMAIL_ADDRESS=email@gmail.com
+EMAIL_PASSWORD=somepassword
+APP_SECRET=appsectsdjsnd
+ENV="development"
