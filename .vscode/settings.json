@@ -1,0 +1,9 @@
+{
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportUndefinedVariable": "none"
+    },
+    "pylint.args": [
+        "--disable=C0114,C0103,E0015,W0012,W0406",
+        "--ignore=migration"
+    ]
+}
