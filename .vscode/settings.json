@@ -3,7 +3,7 @@
         "reportUndefinedVariable": "none"
     },
     "pylint.args": [
-        "--disable=C0114,C0103,E0015,W0012,W0406",
+        "--disable=C0114,C0103,E0015,W0012,W0406,W0613",
         "--ignore=migration"
     ]
 }

@@ -1,20 +1,22 @@
 """
-Starting point of the app
+Configuring the app
 """
 
-import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
-from configs import config, ORIGINS, DESCRIPTION
-from controllers import emailRouter
-
+from fastapi import HTTPException
+from app.config import config
+from app.routers.email_router import email_router
+from app.utils.exceptions import (
+    custom_http_exception_handler,
+    custom_general_exception_handler,
+)
 
 app = FastAPI(
     title="EmailService",
     debug=1 if config.ENV == "development" else 0,
     version="0.0.1",
-    description=DESCRIPTION,
+    description=config.DESCRIPTION,
     license_info={
         "name": "MIT License",
         "url": "https://github.com/TeamShiksha/email-service/blob/main/LICENSE",
@@ -26,13 +28,13 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ORIGINS,
+    allow_origins=config.ORIGINS,
     allow_credentials=True,
-    allow_methods=["POST"],
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
-app.include_router(emailRouter)
+app.add_exception_handler(HTTPException, custom_http_exception_handler)
+app.add_exception_handler(Exception, custom_general_exception_handler)
 
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=config.PORT, reload=True)
+app.include_router(email_router, prefix="/api")
