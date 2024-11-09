@@ -35,6 +35,6 @@ app.add_middleware(
 )
 
 app.add_exception_handler(HTTPException, custom_http_exception_handler)
-app.add_exception_handler(Exception, custom_general_exception_handler)
+app.add_exception_handler(AttributeError, custom_general_exception_handler)
 
 app.include_router(email_router, prefix="/api")

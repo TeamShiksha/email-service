@@ -33,11 +33,6 @@ async def send_email(
     email_service = EmailService(email_sender)
     try:
         template_id = email_details.id
-        if template_id not in TEMPLATE_HASH_MAP:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Template not found, for id {template_id}",
-            )
         template_name = TEMPLATE_HASH_MAP.get(template_id)
         template = templates.get_template(template_name)
         rendered_body = template.render(**email_details.body)

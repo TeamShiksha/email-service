@@ -23,7 +23,10 @@ How to use it ?
 Code available `https://github.com/TeamShiksha/email-service`
 """
 
-TEMPLATE_HASH_MAP = {1: "sample.html", 2: "temp.html"}
+TEMPLATE_HASH_MAP = {
+    1: "openlogo/ForgotPasswordorVerify.html",
+    2: "openlogo/RevertBackCustomer.html"
+}
 
 
 class Config(BaseSettings):

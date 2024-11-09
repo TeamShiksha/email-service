@@ -17,7 +17,7 @@ async def custom_http_exception_handler(request: Request, exc: HTTPException):
     )
 
 
-async def custom_general_exception_handler():
+async def custom_general_exception_handler(request: Request, exc: HTTPException):
     """
     Custom handler for unanticipated exceptions.
     """

@@ -27,7 +27,6 @@ class EmailService:
             bool: True if no failure occured on sending email.
         """
         try:
-            print(body)
             result = self.email_sender.send_email(
                 to_email=email_details.recipient,
                 subject=email_details.subject,

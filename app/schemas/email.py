@@ -3,7 +3,8 @@ Request and response schemas for email router.
 """
 
 from typing import Optional, Dict
-from pydantic import BaseModel, EmailStr
+from fastapi import HTTPException, status
+from pydantic import BaseModel, EmailStr, field_validator, ValidationInfo
 
 
 class SendEmailRequestBody(BaseModel):
@@ -25,6 +26,35 @@ class SendEmailRequestBody(BaseModel):
     body: Dict[str, str]
     cc: Optional[EmailStr] = None
     bcc: Optional[EmailStr] = None
+
+    @field_validator("body")
+    @classmethod
+    def check_body_for_id(cls, body: dict, values: ValidationInfo) -> dict:
+        """
+        Validates if all the required keys are present for sending
+        the email with all the required dynamic values.
+        """
+        data = values.data
+        if data.get("id") == 1:
+            required_keys = {"url", "text", "highlighted_text"}
+            if not all(key in body for key in required_keys):
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail= "One or more keys is missing out of ['url', 'text', 'highlighted_text']"
+                )
+        elif data.get("id") == 2:
+            required_keys = {"query", "reply"}
+            if not all(key in body for key in required_keys):
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail= "One or more keys is missing out of ['query', 'reply']"
+                )
+        else:
+            raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail= "Invalid id"
+                )
+        return body
 
 class SendEmailResponseBody(BaseModel):
     """

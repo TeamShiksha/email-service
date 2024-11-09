@@ -63,10 +63,9 @@ class EmailSender:
             msg["To"] = to_email
             msg["Subject"] = subject
             msg.add_alternative(body, subtype="html" if is_html else "plain")
-            print(msg)
             with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
-                # if self.use_tls:
-                #     server.starttls()
+                if self.use_tls:
+                    server.starttls()
                 server.login(self.username, self.password)
                 server.send_message(msg)
             return {"success": True}
