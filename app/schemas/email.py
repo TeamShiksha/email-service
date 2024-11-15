@@ -35,19 +35,19 @@ class SendEmailRequestBody(BaseModel):
         the email with all the required dynamic values.
         """
         data = values.data
-        if data.get("id") == 1:
-            required_keys = {"url", "text", "highlighted_text"}
+        if data.get("id") == 1 or data.get("id") == 2:
+            required_keys = {"url"}
             if not all(key in body for key in required_keys):
                 raise HTTPException(
                     status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                    detail= "One or more keys is missing out of ['url', 'text', 'highlighted_text']"
+                    detail= "Key is missing ['url']"
                 )
-        elif data.get("id") == 2:
-            required_keys = {"query", "reply"}
+        elif data.get("id") == 3:
+            required_keys = {"query", "response"}
             if not all(key in body for key in required_keys):
                 raise HTTPException(
                     status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                    detail= "One or more keys is missing out of ['query', 'reply']"
+                    detail= "Key is missing out of ['query', 'response']"
                 )
         else:
             raise HTTPException(
