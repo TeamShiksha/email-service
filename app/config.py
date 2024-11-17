@@ -16,7 +16,7 @@ so all email templates should be centralized within it,
 along with maintaining updated mappings for unique template IDs.
 
 How to use it ?
-1. Add your template in `templates` folder.
+1. Add your template in `templates` folder based on your project.
 2. Update the template and ID map given in `config` file.
 3. Add validation in the `SendEmailRequestBody` class inside `schemas/email` file.
 
@@ -43,7 +43,7 @@ class Config(BaseSettings):
     EMAIL_PASSWORD: str = cast(str, os.getenv("EMAIL_PASSWORD"))
     APP_SECRET: str = cast(str, os.getenv("APP_SECRET"))
     ENV: str = cast(str, os.getenv("ENV", "development"))
-    ORIGINS: List[str] = ["*"]
+    ORIGINS: List[str] = ["https://logoexecutive.vercel.app", "https://openlogo.fyi", "http://rsvp.kim"]
     DESCRIPTION: str = SWAGGER_APP_DESCRIPTION
 
 
