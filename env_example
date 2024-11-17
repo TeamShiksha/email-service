@@ -1,5 +1,4 @@
-PORT=8000
-EMAIL_PORT=556
+EMAIL_PORT=587
 EMAIL_HOST=smtp.gmail.com
 EMAIL_ADDRESS=email@gmail.com
 EMAIL_PASSWORD=somepassword
