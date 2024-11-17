@@ -36,7 +36,6 @@ class Config(BaseSettings):
     Environmental variable validation class.
     """
 
-    PORT: int = cast(int, os.getenv("PORT", "8000"))
     EMAIL_PORT: int = cast(int, os.getenv("EMAIL_PORT", "587"))
     EMAIL_HOST: str = cast(str, os.getenv("EMAIL_HOST", "smtp.gmail.com"))
     EMAIL_ADDRESS: str = cast(str, os.getenv("EMAIL_ADDRESS"))
