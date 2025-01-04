@@ -63,6 +63,13 @@ class SendEmailRequestBody(BaseModel):
                     status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
                     detail= "Key is missing out of ['name', 'email', 'updatesText', 'updatesLink']"
                 )    
+        elif data.get("id") == 5:
+            required_keys= {"name", "event", "dates", "venue", "badgeNumber", "ticketLink"}
+            if not all(key in body for key in required_keys):
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail= "Key is missing out of ['name', 'event', 'dates', 'venue', 'badgeNumber', 'ticketLink']"
+                )
         else:
             raise HTTPException(
                     status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
