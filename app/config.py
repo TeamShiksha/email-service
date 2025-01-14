@@ -29,8 +29,7 @@ TEMPLATE_HASH_MAP = {
     3: "openlogo/Respond.html",
     4: "rsvp/Verify.html",
     5: "rsvp/ticket.html",
-    6: "rsvp/update.html",
-    7: "rsvp/invite.html"
+    6: "rsvp/update.html"
 }
 
 
