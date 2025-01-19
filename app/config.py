@@ -45,7 +45,7 @@ class Config(BaseSettings):
     APP_SECRET: str = cast(str, os.getenv("APP_SECRET"))
     ENV: str = cast(str, os.getenv("ENV", "development"))
     ORIGINS: List[str] = ["https://logoexecutive.vercel.app", "https://openlogo.fyi",
-                          "http://rsvp.kim", "http://localhost:8000"]
+                          "http://rsvp.kim", "http://localhost:8000", "http://localhost:5000"]
     DESCRIPTION: str = SWAGGER_APP_DESCRIPTION
 
 
