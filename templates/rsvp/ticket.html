@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" lang="en">
+  <head>
+    <link rel="preload" as="image" href="cid:logo.png" />
+    <link rel="preload" as="image" href="cid:verification-email.png" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <style>
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        mso-font-alt: "Verdana";
+      }
+
+      * {
+        font-family: "Inter", Verdana;
+      }
+
+      body {
+        background: #141415;
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+      }
+
+      .container {
+        max-width: 37.5em;
+        margin: 0 auto;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .logo,
+      .verification-image {
+        display: block;
+        outline: none;
+        border: none;
+        text-decoration: none;
+      }
+
+      .verification-image {
+        height: auto;
+        width: 100%;
+      }
+
+      .heading {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+        margin: 16px 0;
+        margin-top: 2.75rem;
+        font-weight: 600;
+        color: rgb(255, 255, 255);
+      }
+
+      .text {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        margin: 16px 0;
+        margin-top: 1.5rem;
+        color: rgb(255, 255, 255);
+      }
+
+      .button {
+        background-color: #ac6aff;
+        font-size: 16px;
+        width: 100%;
+        text-align: center;
+        padding: 10px 20px;
+        border-radius: 20px;
+        margin-left: 0;
+      }
+
+      .button a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .footer-text {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        margin: 16px 0;
+        color: rgb(255, 255, 255);
+      }
+
+      .footer-text a {
+        color: #ac6aff;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <table
+      align="center"
+      width="100%"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      role="presentation"
+      class="container"
+    >
+      <tbody>
+        <tr>
+          <td>
+            <table
+              align="center"
+              width="100%"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <img
+                      alt="Team shiksha logo"
+                      src="cid:logo.png"
+                      class="logo"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table
+              align="center"
+              width="100%"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <img
+                      src="cid:verification-email.png"
+                      class="verification-image"
+                    />
+                    <p class="heading">Hi {{name}},</p>
+                    <p class="text">Your {{event}} ticket is confirmed!</p>
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      class="button"
+                    >
+                      <tbody>
+                        <ul>
+                          <li class="text">Event: {{event}}</li>
+                          <li class="text">Dates: {{dates}}</li>
+                          <li class="text">Venue: {{venue}}</li>
+                          <li class="text">Badge Number: {{badgeNumber}}</li>
+                        </ul>
+                        <tr>
+                          <td>
+                            <a href="{{ticketLink}}" target="_blank"
+                              >Get your ticket</a
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p class="text">Happy Unforgettable events!</p>
+                    <p class="text">RSVP.KIM</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table
+              align="center"
+              width="100%"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <p class="footer-text">
+                      © 2024 Team Shiksha. All rights reserved.
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

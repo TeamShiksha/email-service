@@ -1,8 +1,8 @@
 """
 Request and response schemas for email router.
 """
-
-from typing import Optional, Dict
+from email.policy import default
+from typing import Optional, Dict, List
 from fastapi import HTTPException, status
 from pydantic import BaseModel, EmailStr, field_validator, ValidationInfo
 
@@ -24,8 +24,8 @@ class SendEmailRequestBody(BaseModel):
     subject: str
     recipient: EmailStr
     body: Dict[str, str]
-    cc: Optional[EmailStr] = None
-    bcc: Optional[EmailStr] = None
+    cc: Optional[List[EmailStr]] = None
+    bcc: Optional[List[EmailStr]] = None
 
     @field_validator("body")
     @classmethod
@@ -48,6 +48,27 @@ class SendEmailRequestBody(BaseModel):
                 raise HTTPException(
                     status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
                     detail= "Key is missing out of ['query', 'response']"
+                )
+        elif data.get("id") == 4:
+            required_keys = {"email", "magicLink"}
+            if not all(key in body for key in required_keys):
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail= "Key is missing out of ['name', 'email', 'magicLink']"
+                )
+        elif data.get("id") == 6:
+            required_keys = {"eventName", "updatesText", "updatesLink"}
+            if not all(key in body for key in required_keys):
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail= "Key is missing out of ['eventName', 'updatesText', 'updatesLink']"
+                )
+        elif data.get("id") == 5:
+            required_keys= {"name", "event", "dates", "venue", "badgeNumber", "ticketLink"}
+            if not all(key in body for key in required_keys):
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail= "Key is missing out of ['name', 'event', 'dates', 'venue', 'badgeNumber', 'ticketLink']"
                 )
         else:
             raise HTTPException(
