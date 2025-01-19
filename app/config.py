@@ -28,7 +28,8 @@ TEMPLATE_HASH_MAP = {
     2: "openlogo/Verify.html",
     3: "openlogo/Respond.html",
     4: "rsvp/Verify.html",
-    5: "rsvp/ticket.html"
+    5: "rsvp/ticket.html",
+    6: "rsvp/update.html"
 }
 
 
@@ -43,7 +44,8 @@ class Config(BaseSettings):
     EMAIL_PASSWORD: str = cast(str, os.getenv("EMAIL_PASSWORD"))
     APP_SECRET: str = cast(str, os.getenv("APP_SECRET"))
     ENV: str = cast(str, os.getenv("ENV", "development"))
-    ORIGINS: List[str] = ["https://logoexecutive.vercel.app", "https://openlogo.fyi", "http://rsvp.kim"]
+    ORIGINS: List[str] = ["https://logoexecutive.vercel.app", "https://openlogo.fyi",
+                          "http://rsvp.kim", "http://localhost:8000", "http://localhost:5000"]
     DESCRIPTION: str = SWAGGER_APP_DESCRIPTION
 
 
