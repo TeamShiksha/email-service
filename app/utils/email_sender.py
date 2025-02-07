@@ -3,7 +3,10 @@ For third party email sender.
 """
 
 import smtplib
-from email.message import EmailMessage
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from pydantic import EmailStr
+from typing import List
 
 
 class EmailSender:
@@ -38,36 +41,31 @@ class EmailSender:
         self.use_tls = True
 
     def send_email(
-        self, to_email: str, subject: str, body: str, is_html: bool = False
+            self, to_email: EmailStr, subject: str, body: str,  cc: List[EmailStr], bcc: List[EmailStr], is_html: bool = False,
     ) -> bool:
         """
         Sends an email using the configured SMTP settings.
-
-        Args:
-            to_email (str): The recipient's email address.
-            subject (str): The subject line of the email.
-            body (str): The body of the email, which can be in plain text or HTML.
-            is_html (bool, optional): Specifies whether the email body is HTML content.
-                                      Defaults to False.
-
-        Returns:
-            dict: A response dictionary containing the success of the email send action.
-
-        Raises:
-            Exception: If there is an error during the email-sending process,
-                       an exception is raised and the error message is included in the response.
         """
         try:
-            msg = EmailMessage()
+            msg = MIMEMultipart()
+            msg["Subject"] = subject
             msg["From"] = self.username
             msg["To"] = to_email
-            msg["Subject"] = subject
-            msg.add_alternative(body, subtype="html" if is_html else "plain")
+
+            if cc:
+                msg["Cc"] = ", ".join(cc)
+
+            bcc_recipients = bcc or []
+
+            msg.attach(MIMEText(body, "html" if is_html else "plain"))
+
+            recipients = [msg["To"]] + msg.get_all("Cc", []) + bcc_recipients
+
             with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
                 if self.use_tls:
                     server.starttls()
                 server.login(self.username, self.password)
-                server.send_message(msg)
+                server.sendmail(msg["From"], recipients, msg.as_string())
             return {"success": True}
         except Exception as e:
             raise e
