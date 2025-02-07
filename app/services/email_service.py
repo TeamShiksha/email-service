@@ -33,6 +33,8 @@ class EmailService:
                 cc=email_details.cc,
                 bcc=email_details.bcc,
                 body=body,
+                cc=email_details.cc,
+                bcc=email_details.bcc,
                 is_html=True,
             )
             return result
