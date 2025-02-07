@@ -31,6 +31,8 @@ class EmailService:
                 to_email=email_details.recipient,
                 subject=email_details.subject,
                 body=body,
+                cc=email_details.cc,
+                bcc=email_details.bcc,
                 is_html=True,
             )
             return result

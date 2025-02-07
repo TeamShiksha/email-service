@@ -4,6 +4,9 @@ For third party email sender.
 
 import smtplib
 from email.message import EmailMessage
+from typing import List
+
+from pydantic import EmailStr
 
 
 class EmailSender:
@@ -38,7 +41,12 @@ class EmailSender:
         self.use_tls = True
 
     def send_email(
-        self, to_email: str, subject: str, body: str, is_html: bool = False
+        self, to_email: str,
+        subject: str,
+        body: str,
+        cc: List[EmailStr],
+        bcc: List[EmailStr],
+        is_html: bool = False
     ) -> bool:
         """
         Sends an email using the configured SMTP settings.
@@ -62,6 +70,10 @@ class EmailSender:
             msg["From"] = self.username
             msg["To"] = to_email
             msg["Subject"] = subject
+            if cc:
+                msg["Cc"] = ",".join(cc)
+            if bcc:
+                msg["Bcc"] = ",".join(bcc)
             msg.add_alternative(body, subtype="html" if is_html else "plain")
             with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
                 if self.use_tls:
