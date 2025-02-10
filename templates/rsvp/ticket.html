@@ -1,95 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" lang="en">
   <head>
-    <link rel="preload" as="image" href="cid:logo.png" />
-    <link rel="preload" as="image" href="cid:verification-email.png" />
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <meta name="x-apple-disable-message-reformatting" />
-    <style>
-      @font-face {
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 400;
-        mso-font-alt: "Verdana";
-      }
-
-      * {
-        font-family: "Inter", Verdana;
-      }
-
-      body {
-        background: #141415;
-        padding-top: 2.5rem;
-        padding-bottom: 2.5rem;
-      }
-
-      .container {
-        max-width: 37.5em;
-        margin: 0 auto;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-      }
-
-      .logo,
-      .verification-image {
-        display: block;
-        outline: none;
-        border: none;
-        text-decoration: none;
-      }
-
-      .verification-image {
-        height: auto;
-        width: 100%;
-      }
-
-      .heading {
-        font-size: 2.25rem;
-        line-height: 2.5rem;
-        margin: 16px 0;
-        margin-top: 2.75rem;
-        font-weight: 600;
-        color: rgb(255, 255, 255);
-      }
-
-      .text {
-        font-size: 1.125rem;
-        line-height: 1.75rem;
-        margin: 16px 0;
-        margin-top: 1.5rem;
-        color: rgb(255, 255, 255);
-      }
-
-      .button {
-        background-color: #ac6aff;
-        font-size: 16px;
-        width: 100%;
-        text-align: center;
-        padding: 10px 20px;
-        border-radius: 20px;
-        margin-left: 0;
-      }
-
-      .button a {
-        color: white;
-        text-decoration: none;
-        font-size: 14px;
-      }
-
-      .footer-text {
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-        margin: 16px 0;
-        color: rgb(255, 255, 255);
-      }
-
-      .footer-text a {
-        color: #ac6aff;
-        text-decoration: none;
-      }
-    </style>
   </head>
-  <body>
+  <body style="background-color: #141415; font-family: 'Inter', Verdana; padding-top: 2.5rem; padding-bottom: 2.5rem;">
     <table
       align="center"
       width="100%"
@@ -97,7 +12,7 @@
       cellpadding="0"
       cellspacing="0"
       role="presentation"
-      class="container"
+      style="max-width: 37.5em; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem;"
     >
       <tbody>
         <tr>
@@ -116,7 +31,7 @@
                     <img
                       alt="Team shiksha logo"
                       src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/main/images/logo.png"
-                      class="logo"
+                      style="display: block; outline: none; border: none; text-decoration: none;"
                       width="100"
                       height="50"
                     />
@@ -137,10 +52,14 @@
                   <td>
                     <img
                       src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/main/images/verification-img.png"
-                      class="verification-image"
+                      style="display: block; outline: none; border: none; text-decoration: none; height: auto; width: 100%;"
                     />
-                    <p class="heading">Hi {{name}},</p>
-                    <p class="text">Your {{event}} ticket is confirmed!</p>
+                    <p
+                      style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0 1.5rem 0; color: rgb(255, 255, 255);"
+                    >
+                      We would like to share an important update regarding the communication of the event:
+                      {{eventName}},
+                    </p>
                     <table
                       align="center"
                       width="100%"
@@ -148,26 +67,61 @@
                       cellpadding="0"
                       cellspacing="0"
                       role="presentation"
-                      class="button"
+                      style="background-color: #ac6aff; width: 100%; font-size: 16px; padding: 10px 20px; text-align: center; margin-left: 0;"
                     >
                       <tbody>
-                        <ul>
-                          <li class="text">Event: {{event}}</li>
-                          <li class="text">Dates: {{dates}}</li>
-                          <li class="text">Venue: {{venue}}</li>
-                          <li class="text">Badge Number: {{badgeNumber}}</li>
-                        </ul>
                         <tr>
                           <td>
-                            <a href="{{ticketLink}}" target="_blank"
-                              >Get your ticket</a
-                            >
+                            <span style="color: white; text-decoration: none; font-size: 14px;">We have some updates for you...</span>
                           </td>
                         </tr>
                       </tbody>
                     </table>
-                    <p class="text">Happy Unforgettable events!</p>
-                    <p class="text">RSVP.KIM</p>
+                    <p
+                      style="background-color: black; color: white; padding: 16px;"
+                    >
+                      {{updatesText}}.
+                    </p>
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="background-color: #ac6aff; font-size: 16px; padding: 10px 20px; text-align: center; border-radius: 20px; margin-left: 0; width: 100%;"
+                    >
+                      <tbody>
+                        <tr>
+                          <td>
+                            <a
+                              href="{{updateLink}}"
+                              target="_blank"
+                              style="color: white; text-decoration: none; font-size: 14px;"
+                            >
+                              Check Updates
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p
+                      style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0 1.5rem 0; color: rgb(255, 255, 255);"
+                    >
+                      We appreciate your understanding and cooperation with this
+                      adjustment. Should you have any questions or require any
+                      information.
+                    </p>
+                    <p
+                      style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0 1.5rem 0; color: rgb(255, 255, 255);"
+                    >
+                      Happy Unforgettable events!
+                    </p>
+                    <p
+                      style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0 1.5rem 0; color: rgb(255, 255, 255);"
+                    >
+                      RSVP.KIM
+                    </p>
                   </td>
                 </tr>
               </tbody>
@@ -183,8 +137,10 @@
               <tbody>
                 <tr>
                   <td>
-                    <p class="footer-text">
-                      © 2025 <a href="https://rsvp.kim" target="_blank">RSVP.KIM</a>. All rights reserved. Powered by <a href="https://team.shiksha/" target="_blank">Team Shiksha</a>
+                    <p
+                      style="font-size: 0.875rem; line-height: 1.25rem; margin: 16px 0; color: rgb(255, 255, 255);"
+                    >
+                      © 2025 <a href="https://rsvp.kim" target="_blank" style="color: #ac6aff; text-decoration: none;">RSVP.KIM</a>. All rights reserved.<br /> Powered by <a href="https://team.shiksha/" target="_blank" style="color: #ac6aff; text-decoration: none;">Team Shiksha</a>.
                     </p>
                   </td>
                 </tr>
