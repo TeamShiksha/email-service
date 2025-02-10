@@ -30,8 +30,6 @@ class EmailService:
             result = self.email_sender.send_email(
                 to_email=email_details.recipient,
                 subject=email_details.subject,
-                cc=email_details.cc,
-                bcc=email_details.bcc,
                 body=body,
                 cc=email_details.cc,
                 bcc=email_details.bcc,
