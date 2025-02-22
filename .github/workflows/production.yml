@@ -9,6 +9,7 @@ on:
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     environment: PROD
     env:
         VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
