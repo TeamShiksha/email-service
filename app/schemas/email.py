@@ -7,6 +7,8 @@ from fastapi import HTTPException, status
 from pydantic import BaseModel, EmailStr, field_validator, ValidationInfo
 
 
+EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
+
 class SendEmailRequestBody(BaseModel):
     """
     Request body for sending emails.
@@ -15,17 +17,18 @@ class SendEmailRequestBody(BaseModel):
     subject: Subject for the email
     recipient: Recipient of the email
     body: Dynamic values which should be populated in
-            HTML template
+          the HTML template
 
-    cc and bcc are optional field and can be used if required
+    cc, bcc, and self are optional fields.
     """
 
     id: int
     subject: str
-    recipient: EmailStr
+    recipient: Optional[EmailStr] = None
     body: Dict[str, str]
     cc: Optional[List[EmailStr]] = None
     bcc: Optional[List[EmailStr]] = None
+    self: bool = False
 
     @field_validator("body")
     @classmethod
@@ -35,59 +38,53 @@ class SendEmailRequestBody(BaseModel):
         the email with all the required dynamic values.
         """
         data = values.data
-        if data.get("id") == 1 or data.get("id") == 2:
-            required_keys = {"url"}
-            if not all(key in body for key in required_keys):
-                raise HTTPException(
-                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                    detail= "Key is missing ['url']"
-                )
-        elif data.get("id") == 3:
-            required_keys = {"query", "response"}
-            if not all(key in body for key in required_keys):
-                raise HTTPException(
-                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                    detail= "Key is missing out of ['query', 'response']"
-                )
-        elif data.get("id") == 4:
-            required_keys = {"email", "magicLink"}
-            if not all(key in body for key in required_keys):
-                raise HTTPException(
-                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                    detail= "Key is missing out of ['name', 'email', 'magicLink']"
-                )
-        elif data.get("id") == 5:
-            required_keys= {"name", "event", "dates", "venue", "badgeNumber", "ticketLink"}
-            if not all(key in body for key in required_keys):
-                raise HTTPException(
-                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                    detail= "Key is missing out of ['name', 'event', 'dates', 'venue', 'badgeNumber', 'ticketLink']"
-                )
-        elif data.get("id") == 6:
-            required_keys = {"eventName", "updatesText", "updatesLink"}
-            if not all(key in body for key in required_keys):
-                raise HTTPException(
-                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                    detail= "Key is missing out of ['eventName', 'updatesText', 'updatesLink']"
-                )
-        elif data.get("id") == 7:
-            required_keys= {"inviteeName", "eventName", "inviteText", "inviteLink"}
-            if not all(key in body for key in required_keys):
-                raise HTTPException(
-                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                    detail= "Key is missing out of ['inviteeName', 'eventName', 'inviteText', 'inviteLink']"
-                )
-        else:
+        required_keys_map = {
+            1: {"url"},
+            2: {"url"},
+            3: {"query", "response"},
+            4: {"email", "magicLink"},
+            5: {"name", "event", "dates", "venue", "badgeNumber", "ticketLink"},
+            6: {"eventName", "updatesText", "updatesLink"},
+            7: {"inviteeName", "eventName", "inviteText", "inviteLink"},
+        }
+
+        required_keys = required_keys_map.get(data.get("id"))
+        if not required_keys:
             raise HTTPException(
-                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                    detail= "Invalid id"
-                )
+                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                detail="Invalid id",
+            )
+
+        if not all(key in body for key in required_keys):
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                detail=f"Key is missing from {required_keys}",
+            )
+
         return body
 
-class SendEmailResponseBody(BaseModel):
-    """
-    Response body for the send email API.
-    """
-    success: bool
-    message: str
-    details: SendEmailRequestBody
+    @field_validator("cc", "bcc", mode="before")
+    @classmethod
+    def add_self_to_recipients(cls, value, values: ValidationInfo):
+        """
+        Adds the sender's email to CC if self is True.
+        """
+        if values.data.get("self") and EMAIL_ADDRESS:
+            if value is None:
+                return [EMAIL_ADDRESS]
+            elif EMAIL_ADDRESS not in value:
+                value.append(EMAIL_ADDRESS)
+        return value
+
+    @field_validator("recipient", mode="before")
+    @classmethod
+    def validate_recipients(cls, value, values: ValidationInfo):
+        """
+        Ensures at least one recipient (recipient, cc, or bcc) is provided.
+        """
+        if not value and not values.data.get("cc") and not values.data.get("bcc"):
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                detail="At least one recipient (recipient, cc, or bcc) must be provided.",
+            )
+        return value
