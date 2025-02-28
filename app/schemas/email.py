@@ -66,11 +66,12 @@ class SendEmailRequestBody(BaseModel):
         """
         Adds the sender's email to CC if self is True.
         """
-        if values.data.get("self") and config.EMAIL_ADDRESS:
+        email_address = config.EMAIL_ADDRESS
+        if values.data.get("self") and email_address:
             if value is None:
-                return [config.EMAIL_ADDRESS]
-            elif config.EMAIL_ADDRESS not in value:
-                value.append(config.EMAIL_ADDRESS)
+                return [email_address]
+            elif email_address not in value:
+                value.append(email_address)
         return value
 
     @field_validator("recipient", mode="before")
