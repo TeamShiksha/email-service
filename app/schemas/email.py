@@ -5,10 +5,7 @@ from email.policy import default
 from typing import Optional, Dict, List
 from fastapi import HTTPException, status
 from pydantic import BaseModel, EmailStr, field_validator, ValidationInfo
-
-
-EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
-
+from app.config import config
 class SendEmailRequestBody(BaseModel):
     """
     Request body for sending emails.
@@ -69,11 +66,11 @@ class SendEmailRequestBody(BaseModel):
         """
         Adds the sender's email to CC if self is True.
         """
-        if values.data.get("self") and EMAIL_ADDRESS:
+        if values.data.get("self") and config.EMAIL_ADDRESS:
             if value is None:
-                return [EMAIL_ADDRESS]
-            elif EMAIL_ADDRESS not in value:
-                value.append(EMAIL_ADDRESS)
+                return [config.EMAIL_ADDRESS]
+            elif config.EMAIL_ADDRESS not in value:
+                value.append(config.EMAIL_ADDRESS)
         return value
 
     @field_validator("recipient", mode="before")
