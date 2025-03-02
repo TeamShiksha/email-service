@@ -1,11 +1,13 @@
 """
 Request and response schemas for email router.
 """
-from email.policy import default
+
 from typing import Optional, Dict, List
 from fastapi import HTTPException, status
 from pydantic import BaseModel, EmailStr, field_validator, ValidationInfo
 from app.config import config
+
+
 class SendEmailRequestBody(BaseModel):
     """
     Request body for sending emails.
@@ -86,3 +88,11 @@ class SendEmailRequestBody(BaseModel):
                 detail="At least one recipient (recipient, cc, or bcc) must be provided.",
             )
         return value
+
+class SendEmailResponseBody(BaseModel):
+    """
+    Response body for the send email API.
+    """
+    success: bool
+    message: str
+    details: SendEmailRequestBody
