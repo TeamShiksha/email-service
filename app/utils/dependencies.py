@@ -4,7 +4,7 @@ All the dependencies are defined here.
 
 from functools import wraps
 from fastapi import HTTPException, Request
-from app.utils.email_sender import EmailSender
+from app.utils import EmailSender
 from app.config import config
 
 

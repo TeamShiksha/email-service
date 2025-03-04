@@ -3,7 +3,7 @@ All custom exception hanlders.
 """
 
 from fastapi import HTTPException, Request
-from app.utils.response import error_response
+from app.utils import error_response
 
 
 async def custom_http_exception_handler(request: Request, exc: HTTPException):

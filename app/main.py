@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import HTTPException
 from app.config import config
 from app.routers.email_router import email_router
-from app.utils.exceptions import (
+from app.utils import (
     custom_http_exception_handler,
     custom_general_exception_handler,
 )
@@ -19,11 +19,11 @@ app = FastAPI(
     description=config.DESCRIPTION,
     license_info={
         "name": "MIT License",
-        "url": "https://github.com/TeamShiksha/email-service/blob/main/LICENSE",
+        "url": "https://github.com/TeamShiksha/email-service/blob/prod/LICENSE",
     },
-    openapi_url="/openapi.json" if config.ENV == "development" else None,
-    docs_url="/docs" if config.ENV == "development" else None,
-    redoc_url="/redoc" if config.ENV == "development" else None,
+    openapi_url="/openapi.json",
+    docs_url="/docs",
+    redoc_url="/",
 )
 
 app.add_middleware(
@@ -37,4 +37,4 @@ app.add_middleware(
 app.add_exception_handler(HTTPException, custom_http_exception_handler)
 app.add_exception_handler(AttributeError, custom_general_exception_handler)
 
-app.include_router(email_router)
+app.include_router(email_router, tags= ["Email"])
