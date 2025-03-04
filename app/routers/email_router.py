@@ -2,18 +2,13 @@
 Email router for creating and controlling the endpoint. 
 """
 
-import logging
-import traceback
 from fastapi import APIRouter, Depends, HTTPException, status, Request
 from fastapi.templating import Jinja2Templates
-from app.dependencies import get_email_sender, require_authentication
 from app.services.email_service import EmailService
 from app.schemas.email import SendEmailRequestBody, SendEmailResponseBody
-from app.utils.email_sender import EmailSender
-from app.utils.response import success_response
+from app.utils import EmailSender, success_response, get_email_sender, require_authentication, logger
 from app.config import TEMPLATE_HASH_MAP
 
-logger = logging.getLogger(__name__)
 email_router = APIRouter()
 templates = Jinja2Templates(directory= "templates")
 
@@ -35,10 +30,10 @@ async def send_email(
     Returns:
         success_response: JSONResponse type object containing status_code, message and body.
     """
+    logger.info("Inside send_email router, request origin %s ...", request.headers["origin"])
     email_service = EmailService(email_sender)
     try:
-        template_id = email_details.id
-        template_name = TEMPLATE_HASH_MAP.get(template_id)
+        template_name = TEMPLATE_HASH_MAP.get(email_details.id)
         template = templates.get_template(template_name)
         rendered_body = template.render(**email_details.body)
         _ = email_service.send_email(email_details, rendered_body)
@@ -56,7 +51,6 @@ async def send_email(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e)
         ) from e
     except Exception as e:
-        logger.error(traceback.format_exc())
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Something went wrong. Try again later.",
