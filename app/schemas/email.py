@@ -89,10 +89,12 @@ class SendEmailRequestBody(BaseModel):
             )
         return value
 
+
 class SendEmailResponseBody(BaseModel):
     """
     Response body for the send email API.
     """
+
     success: bool
     message: str
     details: SendEmailRequestBody

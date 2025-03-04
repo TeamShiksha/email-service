@@ -3,4 +3,6 @@ EMAIL_HOST=smtp.gmail.com
 EMAIL_ADDRESS=email@gmail.com
 EMAIL_PASSWORD=somepassword
 APP_SECRET=appsectsdjsnd
-ENV="development"
+ENV=development
+ORIGINS=https://abc.com,https://kbc.com
+PORT=5000

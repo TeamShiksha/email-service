@@ -6,14 +6,20 @@ from fastapi import APIRouter, Depends, HTTPException, status, Request
 from fastapi.templating import Jinja2Templates
 from app.services.email_service import EmailService
 from app.schemas.email import SendEmailRequestBody, SendEmailResponseBody
-from app.utils import EmailSender, success_response, get_email_sender, require_authentication, logger
+from app.utils import (
+    EmailSender,
+    success_response,
+    get_email_sender,
+    require_authentication,
+    logger,
+)
 from app.config import TEMPLATE_HASH_MAP
 
 email_router = APIRouter()
-templates = Jinja2Templates(directory= "templates")
+templates = Jinja2Templates(directory="templates")
 
 
-@email_router.post("/email", response_model= SendEmailResponseBody)
+@email_router.post("/email", response_model=SendEmailResponseBody)
 @require_authentication()
 async def send_email(
     request: Request,
@@ -30,16 +36,16 @@ async def send_email(
     Returns:
         success_response: JSONResponse type object containing status_code, message and body.
     """
-    logger.info("Inside send_email router, request origin %s ...", request.headers["origin"])
+    logger.info(
+        "Inside send_email router, request origin %s ...", request.headers["origin"]
+    )
     email_service = EmailService(email_sender)
     try:
         template_name = TEMPLATE_HASH_MAP.get(email_details.id)
         template = templates.get_template(template_name)
         rendered_body = template.render(**email_details.body)
         _ = email_service.send_email(email_details, rendered_body)
-        return success_response(
-            status_code=200, message="Success", body=email_details
-        )
+        return success_response(status_code=200, message="Success", body=email_details)
     except PermissionError as e:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=str(e)) from e
     except ValueError as e:

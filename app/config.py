@@ -3,7 +3,7 @@ For environment validation and constants
 """
 
 import os
-from typing import cast, List
+from typing import cast
 from pydantic_settings import BaseSettings
 
 
@@ -30,7 +30,7 @@ TEMPLATE_HASH_MAP = {
     4: "rsvp/Verify.html",
     5: "rsvp/ticket.html",
     6: "rsvp/update.html",
-    7: "rsvp/invite.html"
+    7: "rsvp/invite.html",
 }
 
 
@@ -47,6 +47,7 @@ class Config(BaseSettings):
     ENV: str = cast(str, os.getenv("ENV", "development"))
     ORIGINS: str = cast(str, os.getenv("ORIGINS"))
     DESCRIPTION: str = SWAGGER_APP_DESCRIPTION
+    PORT: int = cast(int, os.getenv("PORT", "8000"))
 
 
 config = Config()

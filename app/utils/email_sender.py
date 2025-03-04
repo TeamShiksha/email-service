@@ -41,12 +41,13 @@ class EmailSender:
         self.use_tls = True
 
     def send_email(
-        self, to_email: str,
+        self,
+        to_email: str,
         subject: str,
         body: str,
         cc: List[EmailStr],
         bcc: List[EmailStr],
-        is_html: bool = False
+        is_html: bool = False,
     ) -> bool:
         """
         Sends an email using the configured SMTP settings.

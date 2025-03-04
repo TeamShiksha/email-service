@@ -13,6 +13,7 @@ def require_authentication():
     """
     Decorator responsible for authentication check.
     """
+
     def decorator(func):
         @wraps(func)
         async def wrapper(request: Request, *args, **kwargs):
@@ -22,8 +23,11 @@ def require_authentication():
             if not auth_header or auth_header != app_secret:
                 raise HTTPException(status_code=401, detail="Unauthorized")
             return await func(request, *args, **kwargs)
+
         return wrapper
+
     return decorator
+
 
 def get_email_sender() -> EmailSender:
     """
