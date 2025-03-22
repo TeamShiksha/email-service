@@ -1,0 +1,58 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'CloudFormation template to set up AWS SES, IAM user, and necessary permissions for email sending.'
+
+Parameters:
+  EmailIdentity:
+    Type: String
+    Description: 'Email address'
+    AllowedPattern: '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'
+    ConstraintDescription: 'Must be a valid email address (e.g., user@example.com)'
+
+Resources:
+  SESIdentity:
+    Type: AWS::SES::EmailIdentity
+    Properties:
+      EmailIdentity: !Ref EmailIdentity
+
+  SESUserPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: SESSendEmailPolicy
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - ses:SendEmail
+              - ses:SendRawEmail
+              - ses:GetIdentityVerificationAttributes
+              - ses:ListIdentities
+            Resource: !Sub "arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/*"
+      Users:
+        - !Ref SESUser 
+
+  SESUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: EmailServiceUser
+
+  AccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref SESUser
+
+Outputs:
+  SESUserAccessKey:
+    Description: 'Access Key ID for the IAM user'
+    Value: !Ref AccessKey
+  SESUserSecretKey:
+    Description: 'Secret Access Key for the IAM user'
+    Value: !GetAtt AccessKey.SecretAccessKey
+    Export:
+      Name: 'SESSecretAccessKey'
+  VerifiedEmail:
+    Description: 'Verified Email or Domain in SES'
+    Value: !Ref EmailIdentity
+  Region:
+    Description: 'AWS Region where SES is deployed'
+    Value: !Ref AWS::Region
