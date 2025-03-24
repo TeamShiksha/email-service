@@ -11,7 +11,6 @@ from app.utils import (
     success_response,
     get_email_sender,
     require_authentication,
-    logger,
 )
 from app.config import TEMPLATE_HASH_MAP
 
@@ -36,9 +35,6 @@ async def send_email(
     Returns:
         success_response: JSONResponse type object containing status_code, message and body.
     """
-    origin = request.headers.get("origin", "unknown")
-    logger.info("Inside send_email router ...")
-    logger.info("Request origin %s ...", origin)
     email_service = EmailService(email_sender)
     try:
         template_name = TEMPLATE_HASH_MAP.get(email_details.id)

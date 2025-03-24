@@ -3,7 +3,7 @@ Third party email service configuration for sending emails.
 """
 
 from smtplib import SMTPException, SMTPAuthenticationError, SMTPSenderRefused
-from app.utils import EmailSender, logger
+from app.utils import EmailSender
 from app.schemas.email import SendEmailRequestBody
 
 
@@ -27,7 +27,6 @@ class EmailService:
             bool: True if no failure occured on sending email.
         """
         try:
-            logger.info("Inside send_email function of EmailService ...")
             result = self.email_sender.send_email(
                 to_email=email_details.recipient,
                 subject=email_details.subject,
