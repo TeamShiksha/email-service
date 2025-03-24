@@ -36,9 +36,9 @@ async def send_email(
     Returns:
         success_response: JSONResponse type object containing status_code, message and body.
     """
-    logger.info(
-        "Inside send_email router, request origin %s ...", request.headers["origin"]
-    )
+    origin = request.headers.get("origin", "unknown")
+    logger.info("Inside send_email router ...")
+    logger.info("Request origin %s ...", origin)
     email_service = EmailService(email_sender)
     try:
         template_name = TEMPLATE_HASH_MAP.get(email_details.id)

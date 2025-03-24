@@ -22,6 +22,7 @@ def require_authentication():
             app_secret = config.APP_SECRET
             if not auth_header or auth_header != app_secret:
                 raise HTTPException(status_code=401, detail="Unauthorized")
+            logger.info("Authenticating successful...")
             return await func(request, *args, **kwargs)
 
         return wrapper
