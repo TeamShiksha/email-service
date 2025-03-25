@@ -6,7 +6,6 @@ from functools import wraps
 from fastapi import HTTPException, Request
 from app.config import config
 from .email_sender import EmailSender
-from .logger_config import logger
 
 
 def require_authentication():
@@ -17,7 +16,6 @@ def require_authentication():
     def decorator(func):
         @wraps(func)
         async def wrapper(request: Request, *args, **kwargs):
-            logger.info("Authenticating ...")
             auth_header = request.headers.get("Authorization")
             app_secret = config.APP_SECRET
             if not auth_header or auth_header != app_secret:
@@ -34,7 +32,6 @@ def get_email_sender() -> EmailSender:
     Creates and returns an EmailSender object.
     This function is used as a dependency injection in the controller.
     """
-    logger.info("Adding email sender dependency ...")
     return EmailSender(
         smtp_server=config.EMAIL_HOST,
         smtp_port=config.EMAIL_PORT,
