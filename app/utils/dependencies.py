@@ -17,7 +17,20 @@ def require_authentication():
         @wraps(func)
         async def wrapper(request: Request, *args, **kwargs):
             auth_header = request.headers.get("Authorization")
-            app_secret = config.APP_SECRET
+            # Try to get the email type from the request body
+            try:
+                # Parse the request body
+                body = await request.json()
+                email_type = body.get("type", "NORMAL")
+            except Exception:
+                # If we can't parse the body or type is not specified, default to NORMAL
+                email_type = "NORMAL"
+        
+            # Set app_secret based on email type
+            if email_type == "SES":
+                app_secret = config.AWS_SECRET_KEY
+            else:  # NORMAL
+                app_secret = config.APP_SECRET
             if not auth_header or auth_header != app_secret:
                 raise HTTPException(status_code=401, detail="Unauthorized")
             return await func(request, *args, **kwargs)

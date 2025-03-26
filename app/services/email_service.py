@@ -34,6 +34,7 @@ class EmailService:
                 cc=email_details.cc,
                 bcc=email_details.bcc,
                 is_html=True,
+                type=email_details.type
             )
             return result
         except SMTPAuthenticationError as exc:

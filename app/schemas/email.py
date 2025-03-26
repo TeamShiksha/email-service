@@ -28,6 +28,7 @@ class SendEmailRequestBody(BaseModel):
     cc: Optional[List[EmailStr]] = None
     bcc: Optional[List[EmailStr]] = None
     self: bool = False
+    type: str = "NORMAL"
 
     @field_validator("body")
     @classmethod

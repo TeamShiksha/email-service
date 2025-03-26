@@ -49,5 +49,9 @@ class Config(BaseSettings):
     DESCRIPTION: str = SWAGGER_APP_DESCRIPTION
     PORT: int = cast(int, os.getenv("PORT", "8000"))
 
+    # AWS SES configuration
+    AWS_REGION: str = cast(str, os.getenv("AWS_REGION"))
+    AWS_ACCESS_KEY: str = cast(str, os.getenv("AWS_ACCESS_KEY"))
+    AWS_SECRET_KEY: str = cast(str, os.getenv("AWS_SECRET_KEY"))
 
 config = Config()

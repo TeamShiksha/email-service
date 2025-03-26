@@ -7,6 +7,8 @@ from email.message import EmailMessage
 from typing import List
 
 from pydantic import EmailStr
+import boto3
+from app.config import config
 
 
 class EmailSender:
@@ -39,6 +41,7 @@ class EmailSender:
         self.username = username
         self.password = password
         self.use_tls = True
+        self.config = config
 
     def send_email(
         self,
@@ -48,6 +51,7 @@ class EmailSender:
         cc: List[EmailStr],
         bcc: List[EmailStr],
         is_html: bool = False,
+        type: str = "NORMAL"
     ) -> bool:
         """
         Sends an email using the configured SMTP settings.
@@ -58,6 +62,7 @@ class EmailSender:
             body (str): The body of the email, which can be in plain text or HTML.
             is_html (bool, optional): Specifies whether the email body is HTML content.
                                       Defaults to False.
+            type (str): Email sent using SES or Normal SMTP.
 
         Returns:
             dict: A response dictionary containing the success of the email send action.
@@ -67,20 +72,63 @@ class EmailSender:
                        an exception is raised and the error message is included in the response.
         """
         try:
-            msg = EmailMessage()
-            msg["From"] = self.username
-            msg["To"] = to_email
-            msg["Subject"] = subject
-            if cc:
-                msg["Cc"] = ",".join(cc)
-            if bcc:
-                msg["Bcc"] = ",".join(bcc)
-            msg.add_alternative(body, subtype="html" if is_html else "plain")
-            with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
-                if self.use_tls:
-                    server.starttls()
-                server.login(self.username, self.password)
-                server.send_message(msg)
-            return {"success": True}
+            if type == "SES":
+                
+                ses_client = boto3.client(
+                    "ses",
+                    region_name=self.config.AWS_REGION,
+                    aws_access_key_id=self.config.AWS_ACCESS_KEY,
+                    aws_secret_access_key=self.config.AWS_SECRET_KEY
+                )
+                
+                message = {
+                    'Subject': {'Data': subject},
+                    'Body': {}
+                }
+                
+                if is_html:
+                    message['Body']['Html'] = {'Data': body}
+                else:
+                    message['Body']['Text'] = {'Data': body}
+                
+                destination = {
+                    'ToAddresses': [to_email] if to_email else [],
+                }
+                
+                if cc:
+                    destination['CcAddresses'] = cc
+                
+                if bcc:
+                    destination['BccAddresses'] = bcc
+                
+                
+                # Send email using SES
+                response = ses_client.send_email(
+                    Source=self.config.EMAIL_ADDRESS,
+                    Destination=destination,
+                    Message=message
+                )
+                
+                print(f"Email sent via SES with message ID: {response['MessageId']}")
+                return True
+            
+            elif type == "NORMAL":
+                msg = EmailMessage()
+                msg["From"] = self.username
+                msg["To"] = to_email
+                msg["Subject"] = subject
+                if cc:
+                    msg["Cc"] = ",".join(cc)
+                if bcc:
+                    msg["Bcc"] = ",".join(bcc)
+                msg.add_alternative(body, subtype="html" if is_html else "plain")
+                with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
+                    if self.use_tls:
+                        server.starttls()
+                    server.login(self.username, self.password)
+                    server.send_message(msg)
+                return {"success": True}
+        
         except Exception as e:
+            logger.error(f"Failed to send email: {str(e)}")
             raise e
