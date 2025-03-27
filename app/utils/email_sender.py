@@ -3,11 +3,12 @@ For third party email sender.
 """
 
 import smtplib
+import boto3
 from email.message import EmailMessage
 from typing import List
 
 from pydantic import EmailStr
-import boto3
+
 from app.config import config
 
 
