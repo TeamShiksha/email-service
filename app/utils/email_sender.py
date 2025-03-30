@@ -9,8 +9,6 @@ from typing import List
 
 from pydantic import EmailStr
 
-from app.config import config
-
 
 class EmailSender:
     """
@@ -42,7 +40,6 @@ class EmailSender:
         self.username = username
         self.password = password
         self.use_tls = True
-        self.config = config
 
     def send_email(
         self,
@@ -62,7 +59,6 @@ class EmailSender:
             body (str): The body of the email, which can be in plain text or HTML.
             is_html (bool, optional): Specifies whether the email body is HTML content.
                                       Defaults to False.
-            type (str): Email sent using SES or Normal SMTP.
         Returns:
             dict: A response dictionary containing the success of the email send action.
 
