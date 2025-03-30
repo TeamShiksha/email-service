@@ -5,7 +5,7 @@ All the dependencies are defined here.
 from functools import wraps
 from fastapi import HTTPException, Request
 from app.config import config
-from .email_sender import EmailSender
+from .email_sender import EmailSender, SESEmailSender
 
 
 def require_authentication():
@@ -50,4 +50,16 @@ def get_email_sender() -> EmailSender:
         smtp_port=config.EMAIL_PORT,
         username=config.EMAIL_ADDRESS,
         password=config.EMAIL_PASSWORD,
+    )
+
+def get_ses_email_sender() -> SESEmailSender:
+    """
+    Creates and returns an SESEmailSender object.
+    This function is used as a dependency injection in the controller.
+    """
+    return SESEmailSender(
+        aws_access_key=config.AWS_ACCESS_KEY,
+        aws_secret_key=config.AWS_SECRET_KEY,
+        aws_region=config.AWS_REGION,
+        aws_email=config.AWS_EMAIL
     )

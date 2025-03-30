@@ -52,8 +52,7 @@ class EmailSender:
         cc: List[EmailStr],
         bcc: List[EmailStr],
         is_html: bool = False,
-        type: str = "NORMAL"
-    ) -> bool:
+    ) -> dict:
         """
         Sends an email using the configured SMTP settings.
 
@@ -64,7 +63,6 @@ class EmailSender:
             is_html (bool, optional): Specifies whether the email body is HTML content.
                                       Defaults to False.
             type (str): Email sent using SES or Normal SMTP.
-
         Returns:
             dict: A response dictionary containing the success of the email send action.
 
@@ -73,63 +71,121 @@ class EmailSender:
                        an exception is raised and the error message is included in the response.
         """
         try:
-            if type == "SES":
-                
-                ses_client = boto3.client(
-                    "ses",
-                    region_name=self.config.AWS_REGION,
-                    aws_access_key_id=self.config.AWS_ACCESS_KEY,
-                    aws_secret_access_key=self.config.AWS_SECRET_KEY
-                )
-                
-                message = {
-                    'Subject': {'Data': subject},
-                    'Body': {}
-                }
-                
-                if is_html:
-                    message['Body']['Html'] = {'Data': body}
-                else:
-                    message['Body']['Text'] = {'Data': body}
-                
-                destination = {
-                    'ToAddresses': [to_email] if to_email else [],
-                }
-                
-                if cc:
-                    destination['CcAddresses'] = cc
-                
-                if bcc:
-                    destination['BccAddresses'] = bcc
-                
-                
-                # Send email using SES
-                response = ses_client.send_email(
-                    Source=self.config.EMAIL_ADDRESS,
-                    Destination=destination,
-                    Message=message
-                )
-                
-                print(f"Email sent via SES with message ID: {response['MessageId']}")
-                return True
-            
-            elif type == "NORMAL":
-                msg = EmailMessage()
-                msg["From"] = self.username
-                msg["To"] = to_email
-                msg["Subject"] = subject
-                if cc:
-                    msg["Cc"] = ",".join(cc)
-                if bcc:
-                    msg["Bcc"] = ",".join(bcc)
-                msg.add_alternative(body, subtype="html" if is_html else "plain")
-                with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
-                    if self.use_tls:
-                        server.starttls()
-                    server.login(self.username, self.password)
-                    server.send_message(msg)
-                return {"success": True}
-        
+            msg = EmailMessage()
+            msg["From"] = self.username
+            msg["To"] = to_email
+            msg["Subject"] = subject
+            if cc:
+                msg["Cc"] = ",".join(cc)
+            if bcc:
+                msg["Bcc"] = ",".join(bcc)
+            msg.add_alternative(body, subtype="html" if is_html else "plain")
+            with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
+                if self.use_tls:
+                    server.starttls()
+                server.login(self.username, self.password)
+                server.send_message(msg)
+            return {"success": True}
         except Exception as e:
-            logger.error(f"Failed to send email: {str(e)}")
-            raise e
+            return {"success": False, "error": str(e)}
+
+class SESEmailSender:
+    """
+    A helper class for sending emails using AWS SES.
+
+    This class provides methods for sending emails through Amazon Simple Email Service (SES).
+    """
+
+    def __init__(self, aws_access_key: str, aws_secret_key: str, aws_region: str, aws_email: str):
+        """
+        Initializes the SESEmailSender instance with AWS credentials.
+
+        Args:
+            aws_access_key (str): AWS access key for authentication.
+            aws_secret_key (str): AWS secret key for authentication.
+            aws_region (str): AWS region where SES is configured.
+            aws_email (str): Verified Email address in AWS.
+        """
+        self.aws_access_key = aws_access_key
+        self.aws_secret_key = aws_secret_key
+        self.aws_region = aws_region
+        self.aws_email = aws_email
+
+    def send_ses_email(
+        self,
+        to_email: str,
+        subject: str,
+        body: str,
+        cc: List[EmailStr],
+        bcc: List[EmailStr],
+        is_html: bool = False,
+    ) -> dict:
+
+        """
+        Sends an email using AWS SES.
+
+        Args:
+            to_email (str): The recipient's email address.
+            subject (str): The subject line of the email.
+            body (str): The body of the email, which can be in plain text or HTML.
+            cc (List[EmailStr], optional): Carbon copy recipients. Defaults to None.
+            bcc (List[EmailStr], optional): Blind carbon copy recipients. Defaults to None.
+            is_html (bool, optional): Specifies whether the email body is HTML content.
+                                    Defaults to False.
+            sender (str, optional): The sender's email address. If not provided,
+                                the default verified sender will be used.
+
+        Returns:
+            dict: A response dictionary containing the success of the email send action
+                and the AWS SES message ID.
+
+        Raises:
+            Exception: If there is an error during the email-sending process,
+                    an exception is raised.
+        """
+
+        try:
+            ses_client = boto3.client(
+                    "ses",
+                    region_name=self.aws_region,
+                    aws_access_key_id=self.aws_access_key,
+                    aws_secret_access_key=self.aws_secret_key
+            )
+                
+            message = {
+                'Subject': {'Data': subject},
+                'Body': {}
+            }
+            
+            if is_html:
+                message['Body']['Html'] = {'Data': body}
+            else:
+                message['Body']['Text'] = {'Data': body}
+            
+            destination = {
+                'ToAddresses': [to_email] if to_email else [],
+            }
+            
+            if cc:
+                destination['CcAddresses'] = cc
+            
+            if bcc:
+                destination['BccAddresses'] = bcc
+            
+            
+            response = ses_client.send_email(
+                Source=self.aws_email,
+                Destination=destination,
+                Message=message
+            )
+            
+            return {
+                "success": True,
+                "message_id": response['MessageId']
+            }
+
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e)
+            }

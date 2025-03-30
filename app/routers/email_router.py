@@ -8,8 +8,10 @@ from app.services.email_service import EmailService
 from app.schemas.email import SendEmailRequestBody, SendEmailResponseBody
 from app.utils import (
     EmailSender,
+    SESEmailSender,
     success_response,
     get_email_sender,
+    get_ses_email_sender,
     require_authentication,
 )
 from app.config import TEMPLATE_HASH_MAP
@@ -24,6 +26,7 @@ async def send_email(
     request: Request,
     email_details: SendEmailRequestBody,
     email_sender: EmailSender = Depends(get_email_sender),
+    ses_email_sender: SESEmailSender = Depends(get_ses_email_sender)
 ):
     """
     Sends an email to the recipient using provided details.
@@ -35,7 +38,7 @@ async def send_email(
     Returns:
         success_response: JSONResponse type object containing status_code, message and body.
     """
-    email_service = EmailService(email_sender)
+    email_service = EmailService(email_sender, ses_email_sender)
     try:
         template_name = TEMPLATE_HASH_MAP.get(email_details.id)
         template = templates.get_template(template_name)
