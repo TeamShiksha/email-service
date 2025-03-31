@@ -60,7 +60,9 @@ class EmailSender:
             is_html (bool, optional): Specifies whether the email body is HTML content.
                                       Defaults to False.
         Returns:
-            dict: A response dictionary containing the success of the email send action.
+            dict: A response dictionary containing:
+                - "success" (bool): Indicates whether the email was sent successfully.
+                - "error": Error message if the email sending fails.
 
         Raises:
             Exception: If there is an error during the email-sending process,
@@ -93,21 +95,13 @@ class SESEmailSender:
     """
 
     def __init__(self, aws_access_key: str, aws_secret_key: str, aws_region: str, aws_email: str):
-        """
-        Initializes the SESEmailSender instance with AWS credentials.
-
-        Args:
-            aws_access_key (str): AWS access key for authentication.
-            aws_secret_key (str): AWS secret key for authentication.
-            aws_region (str): AWS region where SES is configured.
-            aws_email (str): Verified Email address in AWS.
-        """
+  
         self.aws_access_key = aws_access_key
         self.aws_secret_key = aws_secret_key
         self.aws_region = aws_region
         self.aws_email = aws_email
 
-    def send_ses_email(
+    def send_email(
         self,
         to_email: str,
         subject: str,
@@ -116,29 +110,6 @@ class SESEmailSender:
         bcc: List[EmailStr],
         is_html: bool = False,
     ) -> dict:
-
-        """
-        Sends an email using AWS SES.
-
-        Args:
-            to_email (str): The recipient's email address.
-            subject (str): The subject line of the email.
-            body (str): The body of the email, which can be in plain text or HTML.
-            cc (List[EmailStr], optional): Carbon copy recipients. Defaults to None.
-            bcc (List[EmailStr], optional): Blind carbon copy recipients. Defaults to None.
-            is_html (bool, optional): Specifies whether the email body is HTML content.
-                                    Defaults to False.
-            sender (str, optional): The sender's email address. If not provided,
-                                the default verified sender will be used.
-
-        Returns:
-            dict: A response dictionary containing the success of the email send action
-                and the AWS SES message ID.
-
-        Raises:
-            Exception: If there is an error during the email-sending process,
-                    an exception is raised.
-        """
 
         try:
             ses_client = boto3.client(
@@ -167,8 +138,7 @@ class SESEmailSender:
             
             if bcc:
                 destination['BccAddresses'] = bcc
-            
-            
+              
             response = ses_client.send_email(
                 Source=self.aws_email,
                 Destination=destination,
