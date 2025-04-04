@@ -87,6 +87,7 @@ class EmailSender:
         except Exception as e:
             return {"success": False, "error": str(e)}
 
+
 class SESEmailSender:
     """
     A helper class for sending emails using AWS SES.
@@ -94,8 +95,9 @@ class SESEmailSender:
     This class provides methods for sending emails through Amazon Simple Email Service (SES).
     """
 
-    def __init__(self, aws_access_key: str, aws_secret_key: str, aws_region: str, aws_email: str):
-  
+    def __init__(
+        self, aws_access_key: str, aws_secret_key: str, aws_region: str, aws_email: str
+    ):
         self.aws_access_key = aws_access_key
         self.aws_secret_key = aws_secret_key
         self.aws_region = aws_region
@@ -110,48 +112,28 @@ class SESEmailSender:
         bcc: List[EmailStr],
         is_html: bool = False,
     ) -> dict:
-
         try:
             ses_client = boto3.client(
-                    "ses",
-                    region_name=self.aws_region,
-                    aws_access_key_id=self.aws_access_key,
-                    aws_secret_access_key=self.aws_secret_key
+                "ses",
+                region_name=self.aws_region,
+                aws_access_key_id=self.aws_access_key,
+                aws_secret_access_key=self.aws_secret_key,
             )
-                
-            message = {
-                'Subject': {'Data': subject},
-                'Body': {}
-            }
-            
+            message = {"Subject": {"Data": subject}, "Body": {}}
             if is_html:
-                message['Body']['Html'] = {'Data': body}
+                message["Body"]["Html"] = {"Data": body}
             else:
-                message['Body']['Text'] = {'Data': body}
-            
+                message["Body"]["Text"] = {"Data": body}
             destination = {
-                'ToAddresses': [to_email] if to_email else [],
+                "ToAddresses": [to_email] if to_email else [],
             }
-            
             if cc:
-                destination['CcAddresses'] = cc
-            
+                destination["CcAddresses"] = cc
             if bcc:
-                destination['BccAddresses'] = bcc
-              
+                destination["BccAddresses"] = bcc
             response = ses_client.send_email(
-                Source=self.aws_email,
-                Destination=destination,
-                Message=message
+                Source=self.aws_email, Destination=destination, Message=message
             )
-            
-            return {
-                "success": True,
-                "message_id": response['MessageId']
-            }
-
-        except Exception as e:
-            return {
-                "success": False,
-                "error": str(e)
-            }
+            return {"success": True, "message_id": response["MessageId"]}
+        except Exception as error:
+            raise ConnectionError(f"Email sending failed: {str(error)}") from error

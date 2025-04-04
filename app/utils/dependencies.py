@@ -45,10 +45,7 @@ def get_email_sender() -> Dict[EmailProvider, Union[EmailSender, SESEmailSender]
         aws_access_key=config.AWS_ACCESS_KEY,
         aws_secret_key=config.AWS_SECRET_KEY,
         aws_region=config.AWS_REGION,
-        aws_email=config.AWS_EMAIL
+        aws_email=config.AWS_EMAIL,
     )
 
-    return {
-        EmailProvider.GMAIL: gmail_sender,
-        EmailProvider.SES: ses_sender
-    }
+    return {EmailProvider.GMAIL: gmail_sender, EmailProvider.SES: ses_sender}
