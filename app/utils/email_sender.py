@@ -84,8 +84,8 @@ class EmailSender:
                 server.login(self.username, self.password)
                 server.send_message(msg)
             return {"success": True}
-        except Exception as e:
-            return {"success": False, "error": str(e)}
+        except Exception as error:
+            raise ConnectionError(f"Email sending failed: {str(error)}") from error
 
 
 class SESEmailSender:
