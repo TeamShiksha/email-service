@@ -2,16 +2,12 @@
 Email router for creating and controlling the endpoint. 
 """
 
-from typing import Dict, Union
-
 from fastapi import APIRouter, Depends, HTTPException, status, Request
 from fastapi.templating import Jinja2Templates
-
 from app.services.email_service import EmailService
-from app.schemas.email import SendEmailRequestBody, SendEmailResponseBody, EmailProvider
+from app.schemas.email import SendEmailRequestBody, SendEmailResponseBody
 from app.utils import (
     EmailSender,
-    SESEmailSender,
     success_response,
     get_email_sender,
     require_authentication,
@@ -27,9 +23,7 @@ templates = Jinja2Templates(directory="templates")
 async def send_email(
     request: Request,
     email_details: SendEmailRequestBody,
-    email_sender: Dict[EmailProvider, Union[EmailSender, SESEmailSender]] = Depends(
-        get_email_sender
-    ),
+    email_sender: EmailSender = Depends(get_email_sender),
 ):
     """
     Sends an email to the recipient using provided details.
