@@ -3,11 +3,9 @@ All the dependencies are defined here.
 """
 
 from functools import wraps
-from typing import Dict, Union
 from fastapi import HTTPException, Request
 from app.config import config
-from app.schemas.email import EmailProvider
-from .email_sender import EmailSender, SESEmailSender
+from .email_sender import EmailSender
 
 
 def require_authentication():
@@ -29,23 +27,14 @@ def require_authentication():
     return decorator
 
 
-def get_email_sender() -> Dict[EmailProvider, Union[EmailSender, SESEmailSender]]:
+def get_email_sender() -> EmailSender:
     """
-    Creates and returns a dictionary of email sender objects.
+    Creates and returns an EmailSender object.
     This function is used as a dependency injection in the controller.
     """
-    gmail_sender = EmailSender(
+    return EmailSender(
         smtp_server=config.EMAIL_HOST,
         smtp_port=config.EMAIL_PORT,
         username=config.EMAIL_ADDRESS,
         password=config.EMAIL_PASSWORD,
     )
-
-    ses_sender = SESEmailSender(
-        aws_access_key=config.AWS_ACCESS_KEY,
-        aws_secret_key=config.AWS_SECRET_KEY,
-        aws_region=config.AWS_REGION,
-        aws_email=config.AWS_EMAIL,
-    )
-
-    return {EmailProvider.GMAIL: gmail_sender, EmailProvider.SES: ses_sender}
