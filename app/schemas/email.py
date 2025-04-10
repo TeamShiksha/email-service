@@ -3,9 +3,15 @@ Request and response schemas for email router.
 """
 
 from typing import Optional, Dict, List
+from enum import Enum
 from fastapi import HTTPException, status
 from pydantic import BaseModel, EmailStr, field_validator, ValidationInfo
 from app.config import config
+
+
+class EmailProvider(str, Enum):
+    GMAIL = "GMAIL"
+    SES = "SES"
 
 
 class SendEmailRequestBody(BaseModel):
@@ -28,6 +34,7 @@ class SendEmailRequestBody(BaseModel):
     cc: Optional[List[EmailStr]] = None
     bcc: Optional[List[EmailStr]] = None
     self: bool = False
+    provider: EmailProvider = EmailProvider.SES
 
     @field_validator("body")
     @classmethod
