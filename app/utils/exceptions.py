@@ -4,7 +4,7 @@ All custom exception hanlders.
 
 from fastapi import HTTPException, Request
 from app.utils import error_response
-
+import logging
 
 async def custom_http_exception_handler(request: Request, exc: HTTPException):
     """
@@ -21,6 +21,7 @@ async def custom_general_exception_handler(request: Request, exc: HTTPException)
     """
     Custom handler for unanticipated exceptions.
     """
+    logging.error(f"AttributeError: {exc} | Occurred in: {request.url}")
     return error_response(
         status_code=500, message="Something went wrong. Try again later.", body=None
     )
