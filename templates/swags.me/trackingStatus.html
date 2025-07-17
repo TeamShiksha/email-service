@@ -178,7 +178,64 @@
               cellpadding="0"
               cellspacing="0"
               role="presentation"
-              style="margin: 32px 0;"
+            >
+              <tbody>
+                <tr>
+                  <td style="display: flex; align-items: center; justify-content: center; gap: 12px">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <img src="{{imgUrl}}" alt="product image" width="100" height="100" style="object-fit: contain;" />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table
+                      width="100%"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                    >
+                      <tbody>
+                        <tr>
+                          <td>
+                            <p style="font-size: 14px; font-weight: 400; font-family: Inter; color: rgba(0,0,0); line-height: 1;">{{product}}</p>
+                            <p style="font-size: 14px; font-weight: 400; font-family: Tenor Sans; color: rgba(85, 85, 85, 1); line-height: 1;">{{description}}</p>
+                            <p style="font-size: 14px; font-weight: 500; font-family: IBM Plex Mono; color: rgba(0,0,0); line-height: 1;">{{quantity}} pcs</p>
+                            <p style="font-size: 14px; font-weight: 400; font-family: IBM Plex Mono; color: rgba(221, 133, 96, 1); line-height: 1;">{{price}}</p> 
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table
+              width="100%"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="margin: 0 0 0 12px;"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <p style="font-size: 18px; line-height: 1; font-weight: 400; font-family: Inter; color: rgba(0,0,0)">Shipping to</p>
+                    <p style="font-size: 18px; line-height: 1; font-weight: 600; font-family: Inter; color: rgba(0,0,0)">{{address}}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table
+              width="100%"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="margin-bottom: 32px;"
             >
               <tbody>
                 <tr>
