@@ -2,74 +2,120 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OpenLogo Email</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lato:wght@700&family=Nunito&family=Poppins&display=swap"
-    rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenLogo Email</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Inter, Arial, sans-serif;
+            box-sizing: border-box;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .container {
+                width: 100% !important;
+                min-width: 100% !important;
+            }
+
+            .main-content {
+                padding: 30px 15px !important;
+            }
+
+            h1 {
+                font-size: 20px !important;
+            }
+
+            p {
+                font-size: 14px !important;
+            }
+
+            .button {
+                display: block !important;
+                width: 100% !important;
+                box-sizing: border-box;
+                text-align: center;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            .logo-text {
+                font-size: 20px !important;
+            }
+
+            .footer-text {
+                font-size: 12px !important;
+            }
+        }
+    </style>
 </head>
 
 <body style="margin: 0; padding: 0; font-family: Inter, Arial, sans-serif; box-sizing: border-box;">
-  <table width="100%" cellpadding="0" cellspacing="0"
-    style="background-color: #ffffff; max-width: 675px; margin: 0 auto; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-    <tr>
-      <td style="padding: 20px; background-color: #f1f1f1; margin: 0 auto; text-align: center">
-        <a href="https://logoexecutive.vercel.app/home" style="color: rgb(17, 24, 39); text-decoration: none; display: inline-flex; align-items: center;">
-
-          <img src="https://raw.githubusercontent.com/TeamShiksha/openlogo/refs/heads/stage/packages/ui/public/openlogo.png"
-
-            alt="Logo" style="height: 35px; width: 35px; margin-right: 10px; vertical-align: middle; display: inline-block;">
-          <span style="font-size: 24px; font-weight: 800;">Openlogo</span>
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding: 50px 20px; text-align: left;">
-        <p style="font-size: 16px; color: #333; margin-bottom: 10px;">Welcome {{name}} to openlogo,</p>
-        <p style="font-size: 16px; color: #333; margin-bottom: 10px;">We have collection of APIs designed to simplify the process of obtaining company logos. Explore more on our documentation page.</p>
-        <p style="font-size: 16px; color: #333; margin-bottom: 10px;">Please follow the link to verify your email:</p>
-        <a href="{{url}}"
-          style="display: inline-block; cursor: pointer; border: none; padding: 12px 20px; font-size: 16px; font-weight: bold; background-color: rgb(79, 70, 229); color: white; border: 2px solid rgb(229, 231, 235); text-decoration: none; border-radius: 6px; transition: 200ms ease-in-out; box-shadow: rgba(140, 152, 164, 0.125) 0px 6px 24px 0px; margin-top: 20px;">Click
-          Here</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="background-color: #f1f1f1; padding: 12px; text-align: center;">
-        <table width="100%" cellpadding="0" cellspacing="0">
-          <tr>
-            <td style="padding-bottom: 10px;">
-              <p style="font-size: 14px; color: #777; margin: 0;">
-                Copyright © 2024 | OpenLogo
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div
-                style="display: inline-block; border: 2px solid rgb(79, 70, 229); border-radius: 6px; padding: 2px 6px;">
-                <a href="https://team.shiksha/" target="_blank" rel="noopener"
-                  style="text-decoration: none; color: rgb(79, 70, 229); font-weight: 700; font-size: 16px; display: flex; align-items: center;">
-                  Powered By
-                  <img src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/prod/images/teamshiksha.png"
-                    alt="TeamShiksha Logo" style="margin: 5px; width: auto; height: 18px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" class="container"
+        style="background-color: #ffffff; max-width: 675px; min-width: 320px; margin: 0 auto; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <tr>
+            <td style="padding: 20px; background-color: #f1f1f1; margin: 0 auto; text-align: center">
+                <a href="https://logoexecutive.vercel.app/home"
+                    style="color: rgb(17, 24, 39); text-decoration: none; display: inline-flex; align-items: center;">
+                    <img src="https://raw.githubusercontent.com/TeamShiksha/openlogo/refs/heads/stage/packages/ui/public/openlogo.png"
+                        alt="Openlogo Logo"
+                        style="height: 35px; width: 35px; margin-right: 10px; vertical-align: middle; display: inline-block;">
+                    <span style="font-size: 24px; font-weight: 800;" class="logo-text">Openlogo</span>
                 </a>
-              </div>
             </td>
-          </tr>
-          <tr>
-            <td style="padding-top: 10px;">
-              <p style="font-size: 10px; color: #777; margin: 0;">
-                This is an automated message from Openlogo. Please do not reply to this email.
-              </p>
+        </tr>
+        <tr>
+            <td style="padding: 50px 20px; text-align: left;" class="main-content">
+                <p style="font-size: 16px; color: #333; margin-bottom: 10px;">Welcome {{name}} to openlogo,</p>
+                <p style="font-size: 16px; color: #333; margin-bottom: 10px;">We have collection of APIs designed to
+                    simplify the process of obtaining company logos. Explore more on our documentation page.</p>
+                <p style="font-size: 16px; color: #333; margin-bottom: 10px;">Please follow the link to verify your
+                    email:</p>
+                <a href="{{url}}"
+                    style="display: inline-block; cursor: pointer; border: none; padding: 12px 20px; font-size: 16px; font-weight: bold; background-color: rgb(79, 70, 229); color: white; border: 2px solid rgb(229, 231, 235); text-decoration: none; border-radius: 6px; transition: 200ms ease-in-out; box-shadow: rgba(140, 152, 164, 0.125) 0px 6px 24px 0px; margin-top: 20px;"
+                    class="button">Verify My Email</a>
             </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
+        </tr>
+        <tr>
+            <td style="background-color: #f1f1f1; padding: 12px; text-align: center;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td style="padding-bottom: 10px;">
+                            <p style="font-size: 14px; color: #777; margin: 0;" class="footer-text">
+                                Copyright © 2024 | Openlogo
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div
+                                style="display: inline-block; border: 2px solid rgb(79, 70, 229); border-radius: 6px; padding: 2px 6px;">
+                                <a href="https://team.shiksha/" target="_blank" rel="noopener"
+                                    style="text-decoration: none; color: rgb(79, 70, 229); font-weight: 700; font-size: 16px; display: flex; align-items: center;">
+                                    Powered By
+                                    
+                                    <img src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/prod/images/teamshiksha.png"
+                                        alt="Powered by TeamShiksha"
+                                        style="margin: 2px; width: auto; height: 25px;">
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px;">
+                            <p style="font-size: 10px; color: #777; margin: 0;" class="footer-text">
+                                This is an automated message from Openlogo. Please do not reply to this email.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 
 </html>
