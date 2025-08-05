@@ -32,5 +32,7 @@ python run.py
 - By default, the app runs at: `http://localhost:{PORT}`, where PORT is the value you provided in the `.env` file. In case, it's not provided the app will run on PORT `8000`.
 - Navigate to the `/`, `/docs`, or `/openapi.json` routes for API documentation and to explore all the available endpoints.
 
+Click [here](./DEVELOPMENT.md) to learn how to setup your template and trigger the endpoint.
+
 ---
 <p align="center" style="text"><strong>If you liked something about this repository, do give it a 🌟.</strong></p>
