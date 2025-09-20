@@ -50,7 +50,7 @@ class SendEmailRequestBody(BaseModel):
             3: {"query", "response"},
             4: {"email", "magicLink"},
             5: {"name", "eventName", "badgeNumber", "ticketLink"},
-            6: {"eventName", "html", "updatesLink"},
+            6: {"eventName", "updatesText", "updatesLink"},
             7: {"inviteeName", "eventName", "inviteText", "inviteLink"},
             8: {"url","email"},
         }
