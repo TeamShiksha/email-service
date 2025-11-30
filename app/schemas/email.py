@@ -49,7 +49,7 @@ class SendEmailRequestBody(BaseModel):
             2: {"url"},
             3: {"query", "response"},
             4: {"email", "magicLink"},
-            5: {"name", "eventName", "badgeNumber", "ticketLink"},
+            5: {"name", "eventName", "badgeNumber", "ticketLink", "googleCalendarLink", "iCalendarLink", "outlookCalendarLink"},
             6: {"eventName", "updatesText", "updatesLink"},
             7: {"inviteeName", "eventName", "inviteText", "inviteLink"},
             8: {"url","email"},
