@@ -42,10 +42,9 @@ class EmailService:
                 )
                 if ics_content:
                     event_name = email_details.body.get('eventName', 'event')
-                    result = self._send_email_with_ics_attachment(
+                    return self._send_email_with_ics_attachment(
                         email_details, body, event_name, ics_content
                     )
-                    return result
             result = self._send_email_by_provider(email_details, body)
             return result
         except Exception as error:
@@ -58,20 +57,17 @@ class EmailService:
         """
         if not data_url or not data_url.startswith('data:'):
             return None
-
-        try:
-            header, data = data_url.split(',', 1)
-
-            if 'base64' in header:
-                decoded = base64.b64decode(data).decode('utf-8')
-            else:
-                decoded = urllib.parse.unquote(data)
-
-            if decoded.strip().startswith('BEGIN:VCALENDAR'):
-                return decoded
-        except Exception as e:
-            print(f"Error extracting ICS content: {e}")
-
+        
+        header, data = data_url.split(',', 1)
+        
+        if 'base64' in header:
+            decoded = base64.b64decode(data).decode('utf-8')
+        else:
+            decoded = urllib.parse.unquote(data)
+        
+        if decoded.strip().startswith('BEGIN:VCALENDAR'):
+            return decoded
+        
         return None
 
     def _send_email_with_ics_attachment(
@@ -87,14 +83,12 @@ class EmailService:
         provider = email_details.provider
         sender = self.email_sender.get(provider)
 
-        # Sanitize filename
         safe_filename = ''.join(c for c in event_name if c.isalnum() or c in (' ', '-', '_')).strip()
         safe_filename = safe_filename[:50] if safe_filename else 'event'
         filename = f"{safe_filename}.ics"
 
-        # Check if sender supports attachments
         if hasattr(sender, 'send_email_with_attachment'):
-            result = sender.send_email_with_attachment(
+            return sender.send_email_with_attachment(
                 to_email=email_details.recipient,
                 subject=email_details.subject,
                 body=body,
@@ -105,19 +99,15 @@ class EmailService:
                 attachment_filename=filename,
                 attachment_content_type='text/calendar'
             )
-        else:
-            # Fallback to regular email if attachment not supported
-            print(f"Warning: {provider} sender doesn't support attachments, sending without ICS file")
-            result = sender.send_email(
-                to_email=email_details.recipient,
-                subject=email_details.subject,
-                body=body,
-                cc=email_details.cc,
-                bcc=email_details.bcc,
-                is_html=True,
-            )
-
-        return result
+        
+        return sender.send_email(
+            to_email=email_details.recipient,
+            subject=email_details.subject,
+            body=body,
+            cc=email_details.cc,
+            bcc=email_details.bcc,
+            is_html=True,
+        )
 
     def _send_email_by_provider(self, email_details: SendEmailRequestBody, body: str):
         provider = email_details.provider
