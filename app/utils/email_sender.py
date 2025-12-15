@@ -8,6 +8,9 @@ from email.message import EmailMessage
 from typing import List
 
 from pydantic import EmailStr
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.application import MIMEApplication
 
 
 class EmailSender:
@@ -102,6 +105,12 @@ class SESEmailSender:
         self.aws_secret_key = aws_secret_key
         self.aws_region = aws_region
         self.aws_email = aws_email
+        self.ses_client = boto3.client(
+            "ses",
+            region_name=self.aws_region,
+            aws_access_key_id=self.aws_access_key,
+            aws_secret_access_key=self.aws_secret_key,
+        )
 
     def send_email(
         self,
@@ -113,12 +122,6 @@ class SESEmailSender:
         is_html: bool = False,
     ) -> dict:
         try:
-            ses_client = boto3.client(
-                "ses",
-                region_name=self.aws_region,
-                aws_access_key_id=self.aws_access_key,
-                aws_secret_access_key=self.aws_secret_key,
-            )
             message = {"Subject": {"Data": subject}, "Body": {}}
             if is_html:
                 message["Body"]["Html"] = {"Data": body}
@@ -137,3 +140,68 @@ class SESEmailSender:
             return {"success": True, "message_id": response["MessageId"]}
         except Exception as error:
             raise ConnectionError(f"Email sending failed: {str(error)}") from error
+
+    def send_email_with_attachment(
+        self,
+        to_email: str,
+        subject: str,
+        body: str,
+        attachment_content: str,
+        attachment_filename: str,
+        attachment_content_type: str = 'application/octet-stream',
+        cc: List[EmailStr] = None,
+        bcc: List[EmailStr] = None,
+        is_html: bool = True,
+    ) -> dict:
+        """
+        Sends an email with an attachment (like an ICS file) using AWS SES send_raw_email.
+        """
+        try:
+            msg = MIMEMultipart()
+            msg['Subject'] = subject
+            msg['From'] = self.aws_email
+            msg['To'] = to_email
+
+            if cc:
+                msg['Cc'] = ", ".join(cc)
+            if bcc:
+                msg['Bcc'] = ", ".join(bcc)
+
+            body_type = 'html' if is_html else 'plain'
+            msg.attach(MIMEText(body, body_type))
+
+            if isinstance(attachment_content, str):
+                attachment_data = attachment_content.encode('utf-8')
+            else:
+                attachment_data = attachment_content
+
+            part = MIMEApplication(attachment_data)
+            
+            part.add_header(
+                'Content-Disposition', 
+                'attachment', 
+                filename=attachment_filename
+            )
+            
+            if attachment_content_type:
+                part.add_header('Content-Type', attachment_content_type)
+
+            msg.attach(part)
+
+            destinations = [to_email]
+            if cc:
+                destinations.extend(cc)
+            if bcc:
+                destinations.extend(bcc)
+
+            response = self.ses_client.send_raw_email(
+                Source=self.aws_email,
+                Destinations=destinations,
+                RawMessage={
+                    'Data': msg.as_string(),
+                }
+            )
+            return {'success': True, 'message_id': response['MessageId']}
+
+        except Exception as error:
+            raise ConnectionError(f"Email with attachment failed: {str(error)}") from error
