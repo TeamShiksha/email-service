@@ -134,7 +134,7 @@ class SESEmailSender:
                 destination["CcAddresses"] = cc
             if bcc:
                 destination["BccAddresses"] = bcc
-            response = ses_client.send_email(
+            response = self.ses_client.send_email(
                 Source=self.aws_email, Destination=destination, Message=message
             )
             return {"success": True, "message_id": response["MessageId"]}
