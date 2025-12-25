@@ -8,7 +8,7 @@
 </head>
 
 <body
-  style="background-color: {{ theme.backgroundColor | default('#141415') }}; font-family: {{ theme.fontFamily | default('Inter', Verdana) }} !important; padding-top: 2.5rem; padding-bottom: 2.5rem;">
+  style="background-color: {{ theme.backgroundColor }}; font-family: {{ theme.fontFamily }} !important; padding-top: 2.5rem; padding-bottom: 2.5rem;">
   <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation"
     style="max-width: 37.5em; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem;">
     <tbody>
@@ -18,139 +18,147 @@
             <tbody>
               <tr>
                 <td>
-                  <img alt="Team shiksha logo"
-                    src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/main/images/logo.png"
-                    style="display: block; outline: none; border: none; text-decoration: none;" width="100"
-                    height="50" />
+                  <table width="100%" role="presentation">
+                    <tr>
+                      <td>
+                        <img
+                          src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/main/images/logo.png"
+                          alt="Team Shiksha" width="100" height="50" style="display: block; border: none;" />
+                      </td>
+                    </tr>
+                  </table>
                 </td>
               </tr>
             </tbody>
           </table>
-          <p
-            style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0 1.5rem 0; color: {{ theme.textColor | default('#ffffff') }};">
-            Hi {{name}},
+          <p style="
+              margin: 24px 0;
+              font-size: 18px;
+              line-height: 28px;
+              color: {{ theme.textColor }};
+            ">
+            Hi {{ name }},
           </p>
-          <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+          <img
+            src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/main/images/verification-img.png"
+            alt="Ticket confirmed" style="width: 100%; height: auto; display: block; border: none;" />
+          <p style="
+              margin: 24px 0;
+              font-size: 18px;
+              line-height: 28px;
+              color: {{ theme.textColor }};
+            ">
+            Your <strong>{{ eventName }}</strong> ticket is confirmed!<br />
+            Ticket ID: <strong>{{ badgeNumber }}</strong>
+          </p>
+          <table width="100%" role="presentation" style="
+              background-color: {{ theme.primaryColor }};
+              border-radius: 20px;
+              text-align: center;
+            ">
+            <tr>
+              <td style="padding: 12px 20px;">
+                <a href="{{ ticketLink }}" target="_blank" style="
+                    font-size: 14px;
+                    text-decoration: none;
+                    color: {{ theme.buttonTextColor }};
+                  ">
+                  Get your ticket
+                </a>
+              </td>
+            </tr>
+          </table>
+          <div style="height: 24px;"></div>
+          <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
             <tbody>
               <tr>
-                <td>
-                  <img
-                    src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/main/images/verification-img.png"
-                    style="display: block; outline: none; border: none; text-decoration: none; height: auto; width: 100%;" />
-                  <p
-                    style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0 1.5rem 0; color: {{ theme.textColor | default('#ffffff') }};">
-                    Your {{eventName}} ticket is confirmed! Ticket ID: {{badgeNumber}}
-                  </p>
-                  <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation"
-                    style="width: 100%; font-size: 16px; color: white;">
-                  </table>
-                  <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation"
-                    style="background-color: #ac6aff; width: 100%; font-size: 16px; padding: 10px 20px; text-align: center; margin-left: 0; border-radius: 20px;">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <a href="{{ticketLink}}" target="_blank"
-                            style="color: {{ theme.buttonTextColor }}; text-decoration: none; font-size: 14px;">Get your
-                            ticket</a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                    <tbody>
-                      <tr>
-                        <td height="16" style="line-height: 16px; font-size: 0;">&nbsp;</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation"
-                    style="margin-top: 0; margin-bottom: 16px;">
-                    <tbody>
-                      <tr>
-                        <td
-                          style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); padding: 10px 20px; text-align: center; border-radius: 20px 20px 0 0;">
-                          <span style="color: white; font-size: 14px;">Add to Calendar</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="background-color: #1a1a1b; padding: 0; border-radius: 0 0 20px 20px;">
-                          <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                            <tbody>
-                              <tr>
-                                <td style="padding: 10px 20px; border-bottom: 1px solid #2d2d2f;">
-                                  <a href="{{googleCalendarLink}}" target="_blank"
-                                    style="text-decoration: none; display: block;">
-                                    <table border="0" cellpadding="0" cellspacing="0" width="200" align="center">
-                                      <tr>
-                                        <td style="width: 32px; text-align: center; vertical-align: middle;">
-                                          <img width="24" height="24"
-                                            src="https://img.icons8.com/color/48/google-calendar--v2.png"
-                                            style="display: inline-block;" />
-                                        </td>
-                                        <td style="vertical-align: middle; text-align: left; padding-left: 12px;">
-                                          <span style="color: #e5e5e7; font-size: 14px; font-weight: 500;">Google</span>
-                                        </td>
-                                      </tr>
-                                    </table>
-                                  </a>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td style="padding: 10px 20px; border-radius: 0 0 20px 20px;">
-                                  <a href="{{outlookCalendarLink}}" target="_blank"
-                                    style="text-decoration: none; display: block;">
-                                    <table border="0" cellpadding="0" cellspacing="0" width="200" align="center">
-                                      <tr>
-                                        <td style="width: 32px; text-align: center; vertical-align: middle;">
-                                          <img width="24" height="24"
-                                            src="https://img.icons8.com/fluency/48/windows-calendar.png"
-                                            style="display: inline-block;" />
-                                        </td>
-                                        <td style="vertical-align: middle; text-align: left; padding-left: 12px;">
-                                          <span
-                                            style="color: #e5e5e7; font-size: 14px; font-weight: 500;">Outlook</span>
-                                        </td>
-                                      </tr>
-                                    </table>
-                                  </a>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <p
-                    style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0 1.5rem 0; color: {{ theme.textColor | default('#ffffff') }};">
-                    Happy Unforgettable events!
-                  </p>
-                  <p
-                    style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0 1.5rem 0; color: {{ theme.textColor | default('#ffffff') }};">
-                    RSVP.KIM
-                  </p>
-                </td>
+                <td height="16" style="line-height: 16px; font-size: 0;">&nbsp;</td>
               </tr>
             </tbody>
           </table>
-          <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
-            <tbody>
-              <tr>
-                <td>
-                  <p
-                    style="font-size: 0.875rem; line-height: 1.25rem; margin: 16px 0; color: {{ theme.textColor | default('#ffffff') }};">
-                    © 2025 <a href="https://rsvp.kim" target="_blank"
-                      style="color: #ac6aff; text-decoration: none;">RSVP.KIM</a>. All rights reserved.<br /> Powered by
-                    <a href="https://team.shiksha/" target="_blank" style="color: #ac6aff; text-decoration: none;">Team
-                      Shiksha</a>.
-                  </p>
-                </td>
-              </tr>
-            </tbody>
+          <table align="center" width="100%" border="0" role="presentation" style="margin-top: 0; margin-bottom: 16px;">
+            <tr>
+              <td style="
+                  background-color: {{ theme.secondaryColor }};
+                ">
+                <a href="{{ googleCalendarLink }}" target="_blank" style="text-decoration: none;">
+                  <table width="200" align="center" style="margin: 12px auto;">
+                    <tr>
+                      <td width="32" align="center">
+                        <img src="https://img.icons8.com/color/48/google-calendar--v2.png" width="24" height="24" />
+                      </td>
+                      <td style="padding-left: 12px;">
+                        <span style="
+                            font-size: 14px;
+                            font-weight: 500;
+                            color: {{ theme.textColor }};
+                          ">
+                          Google
+                        </span>
+                      </td>
+                    </tr>
+                  </table>
+                </a>
+
+                <a href="{{ outlookCalendarLink }}" target="_blank" style="text-decoration: none;">
+                  <table width="200" align="center" style="margin: 12px auto 20px;">
+                    <tr>
+                      <td width="32" align="center">
+                        <img src="https://img.icons8.com/fluency/48/windows-calendar.png" width="24" height="24" />
+                      </td>
+                      <td style="padding-left: 12px;">
+                        <span style="
+                            font-size: 14px;
+                            font-weight: 500;
+                            color: {{ theme.textColor }};
+                          ">
+                          Outlook
+                        </span>
+                      </td>
+                    </tr>
+                  </table>
+                </a>
+              </td>
+            </tr>
           </table>
+          <p style="
+              margin: 24px 0 8px;
+              font-size: 18px;
+              color: {{ theme.textColor }};
+            ">
+            Happy unforgettable events!
+          </p>
+
+          <p style="
+              margin: 0 0 32px;
+              font-size: 18px;
+              color: {{ theme.textColor }};
+            ">
+            RSVP.KIM
+          </p>
+          <p style="
+              font-size: 14px;
+              line-height: 20px;
+              color: {{ theme.textColor }};
+            ">
+            © 2025
+            <a href="https://rsvp.kim" target="_blank" style="color: {{ theme.primaryColor }}; text-decoration: none;">
+              RSVP.KIM
+            </a>.
+            All rights reserved.<br />
+            Powered by
+            <a href="https://team.shiksha/" target="_blank"
+              style="color: {{ theme.primaryColor }}; text-decoration: none;">
+              Team Shiksha
+            </a>
+          </p>
         </td>
       </tr>
     </tbody>
+  </table>
+  </td>
+  </tr>
+  </tbody>
   </table>
 </body>
 

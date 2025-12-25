@@ -11,8 +11,7 @@
   <meta name="x-apple-disable-message-reformatting" />
 </head>
 
-<body
-  style="background: {{ theme.backgroundColor | default('#141415') }}; font-family: {{ theme.fontFamily | default('Inter', Verdana) }} !important; padding-top: 2.5rem; padding-bottom: 2.5rem;">
+<body style="background: #141415; font-family: 'Inter', Verdana; padding-top: 2.5rem; padding-bottom: 2.5rem;">
   <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation"
     style="max-width: 37.5em; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem;">
     <tbody>
@@ -38,10 +37,10 @@
                     src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/main/images/verification-img.png"
                     style="display: block; outline: none; border: none; text-decoration: none; height: auto; width: 100%;" />
                   <p
-                    style="font-size: 2.25rem; line-height: 2.5rem; margin: 16px 0; margin-top: 2.75rem; font-weight: 600; color: {{ theme.textColor | default('#ffffff') }};">
+                    style="font-size: 2.25rem; line-height: 2.5rem; margin: 16px 0; margin-top: 2.75rem; font-weight: 600; color: rgb(255, 255, 255);">
                     Hi</p>
                   <p
-                    style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0; margin-top: 1.5rem; color: {{ theme.textColor | default('#ffffff') }};">
+                    style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0; margin-top: 1.5rem; color: rgb(255, 255, 255);">
                     We're excited to have you join our community of creators! To securely access your account, simply
                     click the magic link below:
                   </p>
@@ -51,23 +50,22 @@
                       <tr>
                         <td>
                           <a href="{{magicLink}}" target="_blank"
-                            style="color: {{ theme.buttonTextColor }}; text-decoration: none; font-size: 14px;">Click
-                            here to login to your
+                            style="color: white; text-decoration: none; font-size: 14px;">Click here to login to your
                             account</a>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                   <p
-                    style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0; margin-top: 1.5rem; color: {{ theme.textColor | default('#ffffff') }};">
+                    style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0; margin-top: 1.5rem; color: rgb(255, 255, 255);">
                     This link will expire in 15 Minutes. Once inside, you'll have access to our full suite of intuitive
                     events and can create one. Our team is here to support you every step of the way.
                   </p>
                   <p
-                    style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0; margin-top: 1.5rem; color: {{ theme.textColor | default('#ffffff') }};">
+                    style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0; margin-top: 1.5rem; color: rgb(255, 255, 255);">
                     Happy Unforgettable events!</p>
                   <p
-                    style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0; margin-top: 1.5rem; color: {{ theme.textColor | default('#ffffff') }};">
+                    style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0; margin-top: 1.5rem; color: rgb(255, 255, 255);">
                     Team Shiksha</p>
                 </td>
               </tr>
@@ -76,22 +74,15 @@
           <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
             <tbody>
               <tr>
-                <td style="color: {{ theme.primaryColor | default('#ffffff') }}; font-size: 14px;">
-                  <p style="margin: 0 0 8px;">
-                    This email was sent to <strong><span>{{ email }}</span></strong>.
+                <td>
+                  <p style="font-size: 0.875rem; line-height: 1.25rem; margin: 16px 0; color: rgb(255, 255, 255);">
+                    This email was sent to <span>{{email}}</span>.
                   </p>
-
-                  <p style="margin: 0;">
-                    © 2025
-                    <a href="https://rsvp.kim" target="_blank"
-                      style="color: {{ theme.primaryColor | default('#ac6aff') }}; text-decoration: none;">
-                      RSVP.KIM
-                    </a>.
-                    All rights reserved. Powered by
-                    <a href="https://team.shiksha/" target="_blank"
-                      style="color: {{ theme.primaryColor | default('#ac6aff') }}; text-decoration: none;">
-                      Team Shiksha
-                    </a>.
+                  <p style="font-size: 0.875rem; line-height: 1.25rem; margin: 16px 0; color: rgb(255, 255, 255);">
+                    © 2025 <a href="https://rsvp.kim" target="_blank"
+                      style="color: #ac6aff; text-decoration: none;">RSVP.KIM</a>. All rights reserved. Powered by <a
+                      href="https://team.shiksha/" target="_blank" style="color: #ac6aff; text-decoration: none;">Team
+                      Shiksha</a>
                   </p>
                 </td>
               </tr>
