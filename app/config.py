@@ -36,6 +36,7 @@ TEMPLATE_HASH_MAP = {
     10: "teamshiksha/RequestSuccess.html",
     11: "teamshiksha/RequestFail.html",
     12: "teamshiksha/Assignment.html"
+    14: "rsvp/review.html",
 }
 
 
