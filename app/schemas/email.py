@@ -7,7 +7,6 @@ from enum import Enum
 from fastapi import HTTPException, status
 from pydantic import BaseModel, EmailStr, field_validator, ValidationInfo
 from app.config import config
-from app.schemas.theme import EmailTheme
 
 
 class EmailProvider(str, Enum):
@@ -31,11 +30,11 @@ class SendEmailRequestBody(BaseModel):
     id: int
     subject: str
     recipient: Optional[EmailStr] = None
-    body: Dict[str, str | dict]
+    body: Dict[str, str]
     cc: Optional[List[EmailStr]] = None
     bcc: Optional[List[EmailStr]] = None
     self: bool = False
-    provider: EmailProvider = EmailProvider.GMAIL
+    provider: EmailProvider = EmailProvider.SES
 
     @field_validator("body")
     @classmethod
@@ -70,19 +69,6 @@ class SendEmailRequestBody(BaseModel):
                 detail=f"Key is missing from {required_keys}",
             )
 
-        return body
-
-    @field_validator("body")
-    @classmethod
-    def extract_theme(cls, body: dict) -> dict:
-        """
-        Extracts theme from body if present, else assigns an empty dict.
-        """
-        theme = body.get("theme")
-        if theme:
-            body["theme"] = EmailTheme(**theme).model_dump()
-        else:
-            body["theme"] = EmailTheme().model_dump()
         return body
 
     @field_validator("cc", "bcc", mode="before")
