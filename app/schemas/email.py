@@ -53,7 +53,8 @@ class SendEmailRequestBody(BaseModel):
             6: {"eventName", "updatesText", "updatesLink"},
             7: {"inviteeName", "eventName", "inviteText", "inviteLink"},
             8: {"url","email"},
-            9: {"eventName", "updatesText", "updatesLink"},
+            9: {},
+            10: {"eventName", "updatesText", "updatesLink"},
         }
 
         required_keys = required_keys_map.get(data.get("id"))

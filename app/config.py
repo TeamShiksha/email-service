@@ -32,7 +32,8 @@ TEMPLATE_HASH_MAP = {
     6: "rsvp/update.html",
     7: "rsvp/invite.html",
     8: "teamshiksha/ForgotPassword.html",
-    9: "rsvp/cancellation.html",
+    9: "teamshiksha/Welcome.html",
+    10: "rsvp/cancellation.html",
 }
 
 
