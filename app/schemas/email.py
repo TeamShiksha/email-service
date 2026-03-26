@@ -52,8 +52,10 @@ class SendEmailRequestBody(BaseModel):
             5: {"name", "eventName", "badgeNumber", "ticketLink", "googleCalendarLink", "iCalendarLink", "outlookCalendarLink"},
             6: {"eventName", "updatesText", "updatesLink"},
             7: {"inviteeName", "eventName", "inviteText", "inviteLink"},
-            8: {"url","email"},
+            8: {"url", "email"},
             9: {},
+            10: {"url", "email"},
+            11: {"email", "magicLink"},
         }
 
         required_keys = required_keys_map.get(data.get("id"))

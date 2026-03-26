@@ -33,6 +33,8 @@ TEMPLATE_HASH_MAP = {
     7: "rsvp/invite.html",
     8: "teamshiksha/ForgotPassword.html",
     9: "teamshiksha/Welcome.html",
+    10: "swags.me/ForgotPassword.html",
+    11: "swags.me/Verify.html",
 }
 
 
