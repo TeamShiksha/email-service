@@ -53,22 +53,30 @@ class SendEmailRequestBody(BaseModel):
             6: {"eventName", "updatesText", "updatesLink"},
             7: {"inviteeName", "eventName", "inviteText", "inviteLink"},
             8: {"url","email"},
-            9: {},
-            10: {"email"},
-            11: {"email"}, 
+            9: {"required": set(), "optional": set()},
+            10: {"required": {"user", "project_assigned_to"}, "optional": set()},
+            11: {"required": {"user"}, "optional": {"justification"}},
         }
 
-        required_keys = required_keys_map.get(data.get("id"))
-        if not required_keys:
+        template_config = required_keys_map.get(data.get("id"))
+
+        if not template_config:
             raise HTTPException(
                 status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
                 detail="Invalid id",
             )
 
-        if not all(key in body for key in required_keys):
+        if isinstance(template_config, set):
+            required_keys = template_config
+        else:
+            required_keys = template_config.get("required", set())
+
+        missing_keys = required_keys - body.keys()
+
+        if missing_keys:
             raise HTTPException(
                 status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                detail=f"Key is missing from {required_keys}",
+                detail=f"Missing required keys: {missing_keys}",
             )
 
         return body
