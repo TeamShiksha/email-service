@@ -56,6 +56,10 @@ class SendEmailRequestBody(BaseModel):
             9: {"required": set(), "optional": set()},
             10: {"required": {"user", "project_assigned_to"}, "optional": set()},
             11: {"required": {"user"}, "optional": {"justification"}},
+            12: {
+                "required": {"assignment_title", "assignment_description", "deadline"},
+                "optional": set(),
+            }
         }
 
         template_config = required_keys_map.get(data.get("id"))
