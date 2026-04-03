@@ -3,199 +3,190 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Application Update - TeamShiksha</title>
+    <title>TeamShiksha Application</title>
   </head>
 
   <body
     style="
       margin: 0;
-      padding: 20px;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #fef2f2, #fee2e2);
+      background: linear-gradient(to bottom, #f0fdf4, #dcfce7);
+      padding: 20px;
     "
   >
-    <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
-      <tbody>
-        <tr>
-          <td align="center">
-            <table
-              width="100%"
-              cellpadding="0"
-              cellspacing="0"
-              role="presentation"
-              style="
-                max-width: 550px;
-                margin: 0 auto;
-                background: white;
-                border-radius: 16px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                overflow: hidden;
-              "
+    <div
+      style="
+        max-width: 550px;
+        margin: 40px auto;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      "
+    >
+      <!-- Header-->
+      <div
+        style="
+          text-align: center;
+          padding: 40px 32px 32px;
+          border-bottom: 1px solid #f3f4f6;
+        "
+      >
+        <img
+          src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/prod/images/teamshiksha.png"
+          alt="TeamShiksha"
+          style="width: 200px; height: auto; display: block; margin: 0 auto"
+        />
+
+        <p
+          style="
+            color: #6b7280;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 12px 0 0;
+            line-height: 1.4;
+          "
+        >
+          A Growth Community For Everyone Who Wants To Learn
+        </p>
+      </div>
+
+      <!-- Content -->
+      <div style="padding: 32px 24px">
+        <!-- Body -->
+        <div
+          style="
+            text-align: left;
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.7;
+          "
+        >
+          <p style="margin: 0 0 16px 0">
+            Thank you for applying to
+            <strong style="color: #111827">TeamShiksha Projects</strong>. We
+            truly appreciate the effort and thought you put into your
+            application.
+          </p>
+
+          <p style="margin: 0 0 20px 0">
+            After careful consideration, we regret to inform you that we will
+            not be moving forward with your application at this time.
+          </p>
+        </div>
+
+        <!-- Feedback -->
+        {% if justification %}
+        <div
+          style="
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+          "
+        >
+          <p
+            style="
+              color: #111827;
+              font-size: 16px;
+              font-weight: 600;
+              margin: 0 0 10px 0;
+            "
+          >
+            Feedback
+          </p>
+
+          <p
+            style="color: #374151; font-size: 15px; line-height: 1.7; margin: 0"
+          >
+            {{justification}}
+          </p>
+        </div>
+        {% endif %}
+
+        <!-- Closing -->
+        <div
+          style="
+            text-align: left;
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.7;
+          "
+        >
+          <p style="margin: 0 0 16px 0">
+            We sincerely appreciate your interest in TeamShiksha and encourage
+            you to apply again in the future.
+          </p>
+
+          <p style="margin: 0 0 20px 0">
+            Wishing you continued success in your journey ahead.
+          </p>
+
+          <p style="margin: 0; color: #111827">
+            Warm regards,<br />
+            <strong>TeamShiksha</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div
+        style="
+          padding: 24px 32px;
+          text-align: center;
+          color: #9ca3af;
+          font-size: 12px;
+          line-height: 1.5;
+          border-top: 1px solid #f3f4f6;
+        "
+      >
+        <!-- Social Links -->
+        <div style="margin: 16px 0">
+          <p
+            style="
+              color: #6b7280;
+              font-size: 13px;
+              font-weight: 500;
+              margin: 0 0 10px 0;
+            "
+          >
+            Follow us on:
+          </p>
+
+          <div style="display: inline-block">
+            <a
+              href="https://www.linkedin.com/company/teamshiksha"
+              style="margin: 0 8px"
             >
-              <!-- Header -->
-              <tr>
-                <td
-                  align="center"
-                  style="
-                    padding: 40px 32px 32px;
-                    border-bottom: 1px solid #f3f4f6;
-                  "
-                >
-                  <img
-                    src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/prod/images/teamshiksha.png"
-                    alt="TeamShiksha"
-                    style="
-                      width: 200px;
-                      height: auto;
-                      display: block;
-                      margin: 0 auto;
-                    "
-                  />
-                  <p
-                    style="
-                      color: #6b7280;
-                      font-size: 16px;
-                      font-weight: 500;
-                      margin: 12px 0 0;
-                      line-height: 1.4;
-                    "
-                  >
-                    A Growth Community For Everyone Who Wants To Learn
-                  </p>
-                </td>
-              </tr>
+              <img
+                src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/prod/images/linkedin.png"
+                width="24"
+                alt="LinkedIn"
+              />
+            </a>
 
-              <!-- Content -->
-              <tr>
-                <td style="padding: 24px 32px; text-align: center">
-                  <h2 style="color: #2d4884; margin: 0 0 16px 0">
-                    Application Update
-                  </h2>
+            <a href="https://github.com/TeamShiksha" style="margin: 0 8px">
+              <img
+                src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/prod/images/github.png"
+                width="24"
+                alt="GitHub"
+              />
+            </a>
 
-                  <p
-                    style="
-                      color: #6b7280;
-                      font-size: 16px;
-                      margin: 0 0 16px 0;
-                      line-height: 1.6;
-                    "
-                  >
-                    Thank you for your interest in <b>TeamShiksha</b>.
-                  </p>
+            <a href="https://x.com/teamshiksha" style="margin: 0 8px">
+              <img
+                src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/prod/images/x-twitter.png"
+                width="24"
+                alt="X"
+              />
+            </a>
+          </div>
+        </div>
 
-                  <p
-                    style="
-                      color: #6b7280;
-                      font-size: 16px;
-                      margin: 0 0 24px 0;
-                      line-height: 1.6;
-                    "
-                  >
-                    We won’t be moving forward this time, but we’d love to see
-                    you apply again.
-                  </p>
-
-                  <!-- Optional Reason -->
-                  {% if justification %}
-                  <table
-                    width="100%"
-                    cellpadding="0"
-                    cellspacing="0"
-                    role="presentation"
-                    style="
-                      background: #fef9e7;
-                      border: 1px solid #fcd34d;
-                      border-radius: 12px;
-                      padding: 20px;
-                      margin-bottom: 24px;
-                    "
-                  >
-                    <tr>
-                      <td style="text-align: center">
-                        <p style="margin: 0 0 8px 0">
-                          <span
-                            style="
-                              color: #d97706;
-                              font-size: 16px;
-                              font-weight: 600;
-                            "
-                            >Feedback</span
-                          >
-                        </p>
-                        <p
-                          style="
-                            color: #92400e;
-                            font-size: 14px;
-                            line-height: 1.5;
-                            margin: 0;
-                          "
-                        >
-                          {{justification}}
-                        </p>
-                      </td>
-                    </tr>
-                  </table>
-                  {% endif %}
-
-                  <!-- CTA -->
-                  <table
-                    align="center"
-                    role="presentation"
-                    cellspacing="0"
-                    cellpadding="0"
-                    style="margin-bottom: 24px"
-                  >
-                    <tr>
-                      <td
-                        align="center"
-                        bgcolor="#2d4884"
-                        style="border-radius: 12px"
-                      >
-                        <a
-                          href="https://team.shiksha"
-                          style="
-                            display: inline-block;
-                            background: #2d4884;
-                            color: white !important;
-                            text-decoration: none;
-                            padding: 14px 28px;
-                            font-size: 15px;
-                            border-radius: 12px;
-                          "
-                        >
-                          Stay Connected →
-                        </a>
-                      </td>
-                    </tr>
-                  </table>
-
-                  <p style="font-size: 14px; color: #6b7280; margin: 0">
-                    Wishing you all the best 🚀
-                  </p>
-                </td>
-              </tr>
-
-              <!-- Footer -->
-              <tr>
-                <td
-                  align="center"
-                  style="
-                    padding: 24px 32px;
-                    color: #9ca3af;
-                    font-size: 12px;
-                    line-height: 1.5;
-                    border-top: 1px solid #f3f4f6;
-                  "
-                >
-                  <p style="margin: 8px 0">
-                    © 2025 TeamShiksha. All rights reserved.
-                  </p>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <p style="margin: 16px 0 8px 0">
+          © 2025 TeamShiksha. All rights reserved.
+        </p>
+      </div>
+    </div>
   </body>
 </html>
