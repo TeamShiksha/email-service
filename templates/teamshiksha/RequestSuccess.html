@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Welcome to TeamShiksha</title>
   </head>
 
@@ -12,9 +15,21 @@
       padding: 20px;
       font-family: Arial, sans-serif;
       background: linear-gradient(to bottom, #f0fdf4, #dcfce7);
+      a,
+      a:visited,
+      a:hover,
+      a:active {
+        color: #2d4884 !important;
+        text-decoration: none !important;
+      }
     "
   >
-    <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+    <table
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      role="presentation"
+    >
       <tbody>
         <tr>
           <td align="center">
@@ -68,9 +83,32 @@
               <!-- Content -->
               <tr>
                 <td style="padding: 24px 32px; text-align: center">
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 20px 0;
+                      line-height: 1.6;
+                      text-align: justify;
+                    "
+                  >
+                    Greetings {{ user }},
+                  </p>
                   <h2 style="color: #2d4884; margin: 0 0 16px 0">
                     You're Selected 🎉
                   </h2>
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 20px 0;
+                      line-height: 1.6;
+                      text-align: justify;
+                    "
+                  >
+                    Congratulations! You have been assigned to the
+                    <strong>{{ project_assigned_to  | title }}</strong> project.
+                  </p>
 
                   <p
                     style="
@@ -78,48 +116,11 @@
                       font-size: 16px;
                       margin: 0 0 20px 0;
                       line-height: 1.6;
+                      text-align: justify;
                     "
                   >
-                    Congratulations! You’ve been selected to join
-                    <b>TeamShiksha</b>.
-                  </p>
-
-                  <!-- CTA -->
-                  <table
-                    align="center"
-                    role="presentation"
-                    cellspacing="0"
-                    cellpadding="0"
-                    style="margin-bottom: 24px"
-                  >
-                    <tr>
-                      <td
-                        align="center"
-                        bgcolor="#2d4884"
-                        style="border-radius: 12px"
-                      >
-                        <a
-                          href="https://github.com/TeamShiksha/how-to-work?tab=readme-ov-file"
-                          style="
-                            display: inline-block;
-                            background: #2d4884;
-                            color: white !important;
-                            text-decoration: none;
-                            padding: 14px 32px;
-                            font-size: 16px;
-                            border-radius: 12px;
-                          "
-                        >
-                          View Work Guide →
-                        </a>
-                      </td>
-                    </tr>
-                  </table>
-
-                  <p
-                    style="color: #6b7280; font-size: 15px; margin: 0 0 24px 0"
-                  >
-                    Before getting started, please go through the guide.
+                    Kindly accept the GitHub organization invite sent to you in
+                    order to be added to your assigned project team.
                   </p>
 
                   <!-- Benefits -->
@@ -132,11 +133,16 @@
                       background: #f9fafb;
                       border-radius: 12px;
                       padding: 20px;
-                      margin-bottom: 24px;
                     "
                   >
                     <tr>
-                      <td style="text-align: left">
+                      <td
+                        style="
+                          padding: 12px 0;
+                          text-align: justify;
+                          padding-top: 16px;
+                        "
+                      >
                         <p
                           style="
                             font-weight: 600;
@@ -144,10 +150,12 @@
                             color: #111827;
                           "
                         >
-                          What You Get:
+                          Next Steps for you:
                         </p>
-                        <ul
+
+                        <ol
                           style="
+                            text-align: justify;
                             margin: 0;
                             padding-left: 18px;
                             color: #4b5563;
@@ -155,10 +163,118 @@
                             line-height: 1.7;
                           "
                         >
-                          <li>Expert-led learning & cohorts</li>
-                          <li>Live sessions & real-world projects</li>
-                          <li>Supportive developer community</li>
-                          <li>Career growth opportunities</li>
+                          <li>
+                            Setup project locally and understand the code.
+                          </li>
+                          <li>
+                            Write your first tech spec doc and get it approved.
+                          </li>
+                          <li>Get your first ISSUE and PR raised.</li>
+                          <li>
+                            Get your PR approved and merged and see the changes
+                            live.
+                          </li>
+                        </ol>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td
+                        style="
+                          padding: 12px 0;
+                          text-align: justify;
+                          padding-top: 16px;
+                        "
+                      >
+                        <p
+                          style="
+                            font-weight: 600;
+                            margin: 0 0 10px 0;
+                            color: #111827;
+                          "
+                        >
+                          Resources to get started:
+                        </p>
+                        <ul
+                          style="
+                            text-align: justify;
+                            margin: 0;
+                            padding-left: 18px;
+                            color: #4b5563;
+                            font-size: 14px;
+                            line-height: 1.7;
+                          "
+                        >
+                          <li>
+                            <a
+                              href="https://github.com/TeamShiksha/how-to-work?tab=readme-ov-file"
+                              style="text-decoration: none;
+                              color: #2d4884;"
+                              >How to Work Guide</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="https://github.com/TeamShiksha/{{ project_assigned_to }}"
+                              style="text-decoration: none;
+                              color: #2d4884;"
+                            >
+                              GitHub Repository for your assigned project
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="https://github.com/TeamShiksha/tech-spec"
+                              style="text-decoration: none;
+                              color: #2d4884;"
+                            >
+                              References to make Tech-Spec Docs
+                            </a>
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        style="
+                          padding: 12px 0;
+                          text-align: justify;
+                          padding-top: 16px;
+                        "
+                      >
+                        <p
+                          style="
+                            font-weight: 600;
+                            margin: 0 0 8px 0;
+                            color: #111827;
+                            font-size: 14px;
+                          "
+                        >
+                          Note:
+                        </p>
+                        <ul
+                          style="
+                            margin: 0;
+                            color: #111827;
+                            text-align: justify;
+                            padding-left: 18px;
+                            color: #4b5563;
+                            font-size: 14px;
+                            line-height: 1.7;
+                          "
+                        >
+                          <li>
+                            Please ensure that your first pull request (PR) is merged within <strong>one month of joining</strong>. Failure to do so may result in removal from the team.
+                          </li>
+                          <li>
+                            Please note that missing <strong>3 consecutive meetings</strong> may result in removal from the team.
+                          </li>
+                          <li>
+                            Please check the Events section of the server or reach out to the team members to stay informed about your meeting schedule and timings.
+                          </li>
+                          <li>
+                            Attendance at meetings is mandatory. Please avoid personal messages and use appropriate communication channels. By joining these channels, you acknowledge and agree to dedicate <strong>6-10 hours per week</strong> to your assigned projects.
+                          </li>
                         </ul>
                       </td>
                     </tr>
