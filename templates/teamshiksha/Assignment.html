@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -32,6 +32,7 @@
                 overflow: hidden;
               "
             >
+              <!-- Header -->
               <tr>
                 <td
                   align="center"
@@ -59,22 +60,36 @@
                 </td>
               </tr>
 
+              <!-- Body -->
               <tr>
-                <td style="padding: 24px 32px; text-align: center">
-                  <h2 style="color: #2d4884; margin: 0 0 16px">Assignment</h2>
+                <td style="padding: 24px 32px; text-align: left">
+                  <!-- Greeting -->
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 16px;
+                      line-height: 1.6;
+                    "
+                  >
+                    Hi,
+                  </p>
 
+                  <!-- Intro -->
                   <p
                     style="
                       color: #6b7280;
                       font-size: 16px;
                       margin: 0 0 24px;
-                      line-height: 1.6;
+                      line-height: 1.7;
                     "
                   >
-                    You’ve been assigned a new task. Please review the details
-                    below and complete it before the deadline.
+                    We’re currently onboarding contributors for ongoing opportunities at TeamShiksha.
+                    As part of the process, we’ve shared a short assignment below to understand
+                    how you approach building and problem-solving in a practical setting.
                   </p>
 
+                  <!-- Assignment Card -->
                   <table
                     width="100%"
                     cellpadding="0"
@@ -89,16 +104,16 @@
                   >
                     <tr>
                       <td style="text-align: left">
-                        <!-- Title -->
+                        <!-- What you'll build -->
                         <p style="margin: 0 0 16px; line-height: 1.5">
                           <strong
                             style="
                               color: #111827;
                               display: block;
-                              margin-bottom: 4px;
+                              margin-bottom: 6px;
                             "
                           >
-                            Title
+                            What you’ll build
                           </strong>
                           <span style="color: #374151; font-size: 15px">
                             {{ assignment_title }}
@@ -110,7 +125,7 @@
                             style="
                               color: #111827;
                               display: block;
-                              margin-bottom: 4px;
+                              margin-bottom: 6px;
                             "
                           >
                             Description
@@ -120,36 +135,71 @@
                           </span>
                         </p>
 
+                        <!-- Deadline -->
                         <p style="margin: 0; line-height: 1.5">
                           <strong
                             style="
                               color: #111827;
                               display: block;
-                              margin-bottom: 4px;
+                              margin-bottom: 6px;
                             "
                           >
-                            Deadline
+                            Submission deadline
                           </strong>
                           <span
                             style="
                               color: #2d4884;
-                              font-weight: 600;
+                              font-weight: 500;
                               font-size: 15px;
                             "
                           >
                             {{ deadline }}
                           </span>
                         </p>
+
+                        <!-- Evaluation hint -->
+                        <p
+                          style="
+                            color: #6b7280;
+                            font-size: 13px;
+                            margin: 12px 0 0;
+                            line-height: 1.5;
+                          "
+                        >
+                          We’ll be reviewing code quality, structure, and overall user experience.
+                        </p>
                       </td>
                     </tr>
                   </table>
 
-                  <p style="color: #6b7280; font-size: 14px; margin: 0">
-                    Make sure to complete it on time.
+                  <!-- Submission -->
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 16px;
+                      line-height: 1.7;
+                    "
+                  >
+                    Once completed, please submit your assignment through the
+                    <strong>TeamShiksha Portal → Requests Dashboard</strong>.
+                  </p>
+
+                  <!-- Closing -->
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0;
+                      line-height: 1.7;
+                    "
+                  >
+                    We look forward to reviewing your submission.
                   </p>
                 </td>
               </tr>
 
+              <!-- Footer -->
               <tr>
                 <td
                   align="center"
