@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to TeamShiksha</title>
+  </head>
+
+  <body
+    style="
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #f0fdf4, #dcfce7);
+    "
+  >
+    <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+      <tbody>
+        <tr>
+          <td align="center">
+            <table
+              width="100%"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="
+                max-width: 550px;
+                margin: 0 auto;
+                background: white;
+                border-radius: 16px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+              "
+            >
+              <!-- Header -->
+              <tr>
+                <td
+                  align="center"
+                  style="
+                    padding: 40px 32px 32px;
+                    border-bottom: 1px solid #f3f4f6;
+                  "
+                >
+                  <img
+                    src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/prod/images/teamshiksha.png"
+                    alt="TeamShiksha"
+                    style="
+                      width: 200px;
+                      height: auto;
+                      display: block;
+                      margin: 0 auto;
+                    "
+                  />
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      font-weight: 500;
+                      margin: 12px 0 0;
+                      line-height: 1.4;
+                    "
+                  >
+                    A Growth Community For Everyone Who Wants To Learn
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Content -->
+              <tr>
+                <td style="padding: 24px 32px; text-align: center">
+                  
+                  <!-- Greeting -->
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 20px 0;
+                      line-height: 1.6;
+                      text-align: justify;
+                    "
+                  >
+                    Greetings {{ user }},
+                  </p>
+
+                  <!-- Heading -->
+                  <h2
+                    style="
+                      color: #2d4884;
+                      margin: 0 0 16px 0;
+                      font-size: 22px;
+                      font-weight: 600;
+                      line-height: 1.3;
+                    "
+                  >
+                    You're Selected 🎉
+                  </h2>
+
+                  <!-- Paragraphs -->
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 20px 0;
+                      line-height: 1.6;
+                      text-align: justify;
+                    "
+                  >
+                    Congratulations! You have been assigned to the
+                    <strong>{{ project_assigned_to | title }}</strong> project.
+                  </p>
+
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 20px 0;
+                      line-height: 1.6;
+                      text-align: justify;
+                    "
+                  >
+                    Kindly accept the GitHub organization invite sent to you
+                    to get started with your assigned team.
+                  </p>
+
+                  <!-- Info Box -->
+                  <table
+                    width="100%"
+                    cellpadding="0"
+                    cellspacing="0"
+                    role="presentation"
+                    style="
+                      background: #f9fafb;
+                      border-radius: 12px;
+                      padding: 20px;
+                    "
+                  >
+                    <!-- Steps -->
+                    <tr>
+                      <td style="padding: 12px 0; text-align: justify">
+                        <p
+                          style="
+                            font-weight: 600;
+                            margin: 0 0 10px 0;
+                            color: #111827;
+                            font-size: 16px;
+                          "
+                        >
+                          Next Steps for you:
+                        </p>
+
+                        <ol
+                          style="
+                            margin: 0;
+                            padding-left: 18px;
+                            color: #4b5563;
+                            font-size: 14px;
+                            line-height: 1.7;
+                          "
+                        >
+                          <li>Setup project locally and understand the code.</li>
+                          <li>Write your first tech spec document.</li>
+                          <li>Raise your first issue and PR.</li>
+                          <li>Get your PR reviewed and merged.</li>
+                        </ol>
+                      </td>
+                    </tr>
+
+                    <!-- Resources -->
+                    <tr>
+                      <td style="padding: 12px 0; text-align: justify">
+                        <p
+                          style="
+                            font-weight: 600;
+                            margin: 0 0 10px 0;
+                            color: #111827;
+                            font-size: 16px;
+                          "
+                        >
+                          Resources to get started:
+                        </p>
+
+                        <ul
+                          style="
+                            margin: 0;
+                            padding-left: 18px;
+                            color: #4b5563;
+                            font-size: 14px;
+                            line-height: 1.7;
+                          "
+                        >
+                          <li>
+                            <a
+                              href="https://github.com/TeamShiksha/how-to-work"
+                              style="color: #2d4884; text-decoration: none"
+                              >How to Work Guide</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="https://github.com/TeamShiksha/{{ project_assigned_to }}"
+                              style="color: #2d4884; text-decoration: none"
+                              >Project Repository</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="https://github.com/TeamShiksha/tech-spec"
+                              style="color: #2d4884; text-decoration: none"
+                              >Tech Spec References</a
+                            >
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+
+                    <!-- Note -->
+                    <tr>
+                      <td style="padding: 12px 0; text-align: justify">
+                        <p
+                          style="
+                            font-weight: 600;
+                            margin: 0 0 8px 0;
+                            color: #111827;
+                            font-size: 14px;
+                          "
+                        >
+                          Note:
+                        </p>
+
+                        <ul
+                          style="
+                            margin: 0;
+                            padding-left: 18px;
+                            color: #4b5563;
+                            font-size: 14px;
+                            line-height: 1.7;
+                          "
+                        >
+                          <li>
+                            Ensure your first PR is merged within
+                            <strong>one month</strong>.
+                          </li>
+                          <li>
+                            Missing <strong>3 consecutive meetings</strong> may
+                            result in removal.
+                          </li>
+                          <li>
+                            Stay updated via team communication channels.
+                          </li>
+                          <li>
+                            Expect to dedicate
+                            <strong>6–10 hours per week</strong>.
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <!-- Closing -->
+                  <p
+                    style="
+                      margin: 20px 0 0;
+                      font-size: 16px;
+                      color: #111827;
+                      line-height: 1.6;
+                    "
+                  >
+                    Welcome aboard 🚀
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Footer -->
+              <tr>
+                <td
+                  align="center"
+                  style="
+                    padding: 24px 32px;
+                    color: #9ca3af;
+                    font-size: 12px;
+                    line-height: 1.5;
+                    border-top: 1px solid #f3f4f6;
+                  "
+                >
+                  <p style="margin: 8px 0">
+                    © 2025 TeamShiksha. All rights reserved.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
