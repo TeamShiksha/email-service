@@ -2,10 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome to TeamShiksha</title>
   </head>
 
@@ -15,21 +12,9 @@
       padding: 20px;
       font-family: Arial, sans-serif;
       background: linear-gradient(to bottom, #f0fdf4, #dcfce7);
-      a,
-      a:visited,
-      a:hover,
-      a:active {
-        color: #2d4884 !important;
-        text-decoration: none !important;
-      }
     "
   >
-    <table
-      width="100%"
-      cellpadding="0"
-      cellspacing="0"
-      role="presentation"
-    >
+    <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
       <tbody>
         <tr>
           <td align="center">
@@ -83,6 +68,8 @@
               <!-- Content -->
               <tr>
                 <td style="padding: 24px 32px; text-align: center">
+                  
+                  <!-- Greeting -->
                   <p
                     style="
                       color: #6b7280;
@@ -94,9 +81,21 @@
                   >
                     Greetings {{ user }},
                   </p>
-                  <h2 style="color: #2d4884; margin: 0 0 16px 0">
+
+                  <!-- Heading -->
+                  <h2
+                    style="
+                      color: #2d4884;
+                      margin: 0 0 16px 0;
+                      font-size: 22px;
+                      font-weight: 600;
+                      line-height: 1.3;
+                    "
+                  >
                     You're Selected 🎉
                   </h2>
+
+                  <!-- Paragraphs -->
                   <p
                     style="
                       color: #6b7280;
@@ -107,7 +106,7 @@
                     "
                   >
                     Congratulations! You have been assigned to the
-                    <strong>{{ project_assigned_to  | title }}</strong> project.
+                    <strong>{{ project_assigned_to | title }}</strong> project.
                   </p>
 
                   <p
@@ -119,11 +118,11 @@
                       text-align: justify;
                     "
                   >
-                    Kindly accept the GitHub organization invite sent to you in
-                    order to be added to your assigned project team.
+                    Kindly accept the GitHub organization invite sent to you
+                    to get started with your assigned team.
                   </p>
 
-                  <!-- Benefits -->
+                  <!-- Info Box -->
                   <table
                     width="100%"
                     cellpadding="0"
@@ -135,19 +134,15 @@
                       padding: 20px;
                     "
                   >
+                    <!-- Steps -->
                     <tr>
-                      <td
-                        style="
-                          padding: 12px 0;
-                          text-align: justify;
-                          padding-top: 16px;
-                        "
-                      >
+                      <td style="padding: 12px 0; text-align: justify">
                         <p
                           style="
                             font-weight: 600;
                             margin: 0 0 10px 0;
                             color: #111827;
+                            font-size: 16px;
                           "
                         >
                           Next Steps for you:
@@ -155,7 +150,6 @@
 
                         <ol
                           style="
-                            text-align: justify;
                             margin: 0;
                             padding-left: 18px;
                             color: #4b5563;
@@ -163,41 +157,30 @@
                             line-height: 1.7;
                           "
                         >
-                          <li>
-                            Setup project locally and understand the code.
-                          </li>
-                          <li>
-                            Write your first tech spec doc and get it approved.
-                          </li>
-                          <li>Get your first ISSUE and PR raised.</li>
-                          <li>
-                            Get your PR approved and merged and see the changes
-                            live.
-                          </li>
+                          <li>Setup project locally and understand the code.</li>
+                          <li>Write your first tech spec document.</li>
+                          <li>Raise your first issue and PR.</li>
+                          <li>Get your PR reviewed and merged.</li>
                         </ol>
                       </td>
                     </tr>
 
+                    <!-- Resources -->
                     <tr>
-                      <td
-                        style="
-                          padding: 12px 0;
-                          text-align: justify;
-                          padding-top: 16px;
-                        "
-                      >
+                      <td style="padding: 12px 0; text-align: justify">
                         <p
                           style="
                             font-weight: 600;
                             margin: 0 0 10px 0;
                             color: #111827;
+                            font-size: 16px;
                           "
                         >
                           Resources to get started:
                         </p>
+
                         <ul
                           style="
-                            text-align: justify;
                             margin: 0;
                             padding-left: 18px;
                             color: #4b5563;
@@ -207,41 +190,32 @@
                         >
                           <li>
                             <a
-                              href="https://github.com/TeamShiksha/how-to-work?tab=readme-ov-file"
-                              style="text-decoration: none;
-                              color: #2d4884;"
+                              href="https://github.com/TeamShiksha/how-to-work"
+                              style="color: #2d4884; text-decoration: none"
                               >How to Work Guide</a
                             >
                           </li>
                           <li>
                             <a
                               href="https://github.com/TeamShiksha/{{ project_assigned_to }}"
-                              style="text-decoration: none;
-                              color: #2d4884;"
+                              style="color: #2d4884; text-decoration: none"
+                              >Project Repository</a
                             >
-                              GitHub Repository for your assigned project
-                            </a>
                           </li>
                           <li>
                             <a
                               href="https://github.com/TeamShiksha/tech-spec"
-                              style="text-decoration: none;
-                              color: #2d4884;"
+                              style="color: #2d4884; text-decoration: none"
+                              >Tech Spec References</a
                             >
-                              References to make Tech-Spec Docs
-                            </a>
                           </li>
                         </ul>
                       </td>
                     </tr>
+
+                    <!-- Note -->
                     <tr>
-                      <td
-                        style="
-                          padding: 12px 0;
-                          text-align: justify;
-                          padding-top: 16px;
-                        "
-                      >
+                      <td style="padding: 12px 0; text-align: justify">
                         <p
                           style="
                             font-weight: 600;
@@ -252,11 +226,10 @@
                         >
                           Note:
                         </p>
+
                         <ul
                           style="
                             margin: 0;
-                            color: #111827;
-                            text-align: justify;
                             padding-left: 18px;
                             color: #4b5563;
                             font-size: 14px;
@@ -264,23 +237,36 @@
                           "
                         >
                           <li>
-                            Please ensure that your first pull request (PR) is merged within <strong>one month of joining</strong>. Failure to do so may result in removal from the team.
+                            Ensure your first PR is merged within
+                            <strong>one month</strong>.
                           </li>
                           <li>
-                            Please note that missing <strong>3 consecutive meetings</strong> may result in removal from the team.
+                            Missing <strong>3 consecutive meetings</strong> may
+                            result in removal.
                           </li>
                           <li>
-                            Please check the Events section of the server or reach out to the team members to stay informed about your meeting schedule and timings.
+                            Stay updated via team communication channels.
                           </li>
                           <li>
-                            Attendance at meetings is mandatory. Please avoid personal messages and use appropriate communication channels. By joining these channels, you acknowledge and agree to dedicate <strong>6-10 hours per week</strong> to your assigned projects.
+                            Expect to dedicate
+                            <strong>6–10 hours per week</strong>.
                           </li>
                         </ul>
                       </td>
                     </tr>
                   </table>
 
-                  <p style="margin: 0; font-size: 15px">Welcome aboard 🚀</p>
+                  <!-- Closing -->
+                  <p
+                    style="
+                      margin: 20px 0 0;
+                      font-size: 16px;
+                      color: #111827;
+                      line-height: 1.6;
+                    "
+                  >
+                    Welcome aboard 🚀
+                  </p>
                 </td>
               </tr>
 

@@ -9,216 +9,210 @@
   <body
     style="
       margin: 0;
-      padding: 20px;
       font-family: Arial, sans-serif;
       background: linear-gradient(to bottom, #f0fdf4, #dcfce7);
+      padding: 20px;
     "
   >
-    <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
-      <tbody>
-        <tr>
-          <td align="center">
-            <table
-              width="100%"
-              cellpadding="0"
-              cellspacing="0"
-              role="presentation"
-              style="
-                max-width: 550px;
-                margin: 0 auto;
-                background: white;
-                border-radius: 16px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                overflow: hidden;
-              "
-            >
-              <!-- Header -->
-              <tr>
-                <td
-                  align="center"
-                  style="
-                    padding: 40px 32px 32px;
-                    border-bottom: 1px solid #f3f4f6;
-                  "
-                >
-                  <img
-                    src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/prod/images/teamshiksha.png"
-                    alt="TeamShiksha"
-                    style="width: 200px; display: block; margin: 0 auto"
-                  />
+    <div
+      style="
+        max-width: 550px;
+        margin: 40px auto;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      "
+    >
+      <!-- Header -->
+      <div
+        style="
+          text-align: center;
+          padding: 40px 32px 32px;
+          border-bottom: 1px solid #f3f4f6;
+        "
+      >
+        <img
+          src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/prod/images/teamshiksha.png"
+          alt="TeamShiksha"
+          style="width: 200px; height: auto; display: block; margin: 0 auto"
+        />
 
-                  <p
-                    style="
-                      color: #6b7280;
-                      font-size: 16px;
-                      font-weight: 500;
-                      margin: 12px 0 0;
-                    "
-                  >
-                    A Growth Community For Everyone Who Wants To Learn
-                  </p>
-                </td>
-              </tr>
+        <p
+          style="
+            color: #6b7280;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 12px 0 0;
+            line-height: 1.4;
+          "
+        >
+          A Growth Community For Everyone Who Wants To Learn
+        </p>
+      </div>
 
-              <!-- Body -->
-              <tr>
-                <td style="padding: 24px 32px; text-align: left">
-                  <!-- Greeting -->
-                  <p
-                    style="
-                      color: #6b7280;
-                      font-size: 16px;
-                      margin: 0 0 16px;
-                      line-height: 1.6;
-                    "
-                  >
-                    Hi,
-                  </p>
+      <!-- Content -->
+      <div style="padding: 32px 24px">
+        
+        <!-- Greeting -->
+        <p
+          style="
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.7;
+            margin: 0 0 16px 0;
+          "
+        >
+          Hi,
+        </p>
 
-                  <!-- Intro -->
-                  <p
-                    style="
-                      color: #6b7280;
-                      font-size: 16px;
-                      margin: 0 0 24px;
-                      line-height: 1.7;
-                    "
-                  >
-                    We’re currently onboarding contributors for ongoing opportunities at TeamShiksha.
-                    As part of the process, we’ve shared a short assignment below to understand
-                    how you approach building and problem-solving in a practical setting.
-                  </p>
+        <!-- Intro -->
+        <p
+          style="
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.7;
+            margin: 0 0 24px 0;
+          "
+        >
+          We’re currently onboarding contributors for ongoing opportunities at TeamShiksha.
+          As part of the process, we’ve shared a short assignment below to understand
+          how you approach building and problem-solving in a practical setting.
+        </p>
 
-                  <!-- Assignment Card -->
-                  <table
-                    width="100%"
-                    cellpadding="0"
-                    cellspacing="0"
-                    role="presentation"
-                    style="
-                      background: #f9fafb;
-                      border-radius: 12px;
-                      padding: 24px;
-                      margin-bottom: 24px;
-                    "
-                  >
-                    <tr>
-                      <td style="text-align: left">
-                        <!-- What you'll build -->
-                        <p style="margin: 0 0 16px; line-height: 1.5">
-                          <strong
-                            style="
-                              color: #111827;
-                              display: block;
-                              margin-bottom: 6px;
-                            "
-                          >
-                            What you’ll build
-                          </strong>
-                          <span style="color: #374151; font-size: 15px">
-                            {{ assignment_title }}
-                          </span>
-                        </p>
+        <!-- Assignment Card -->
+        <div
+          style="
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+          "
+        >
+          <!-- Title -->
+          <p
+            style="
+              color: #111827;
+              font-size: 16px;
+              font-weight: 600;
+              margin: 0 0 10px 0;
+            "
+          >
+            What you’ll build
+          </p>
 
-                        <p style="margin: 0 0 16px; line-height: 1.6">
-                          <strong
-                            style="
-                              color: #111827;
-                              display: block;
-                              margin-bottom: 6px;
-                            "
-                          >
-                            Description
-                          </strong>
-                          <span style="color: #374151; font-size: 15px">
-                            {{ assignment_description }}
-                          </span>
-                        </p>
+          <p
+            style="
+              color: #374151;
+              font-size: 15px;
+              line-height: 1.7;
+              margin: 0 0 16px 0;
+            "
+          >
+            {{ assignment_title }}
+          </p>
 
-                        <!-- Deadline -->
-                        <p style="margin: 0; line-height: 1.5">
-                          <strong
-                            style="
-                              color: #111827;
-                              display: block;
-                              margin-bottom: 6px;
-                            "
-                          >
-                            Submission deadline
-                          </strong>
-                          <span
-                            style="
-                              color: #2d4884;
-                              font-weight: 500;
-                              font-size: 15px;
-                            "
-                          >
-                            {{ deadline }}
-                          </span>
-                        </p>
+          <!-- Description -->
+          <p
+            style="
+              color: #111827;
+              font-size: 16px;
+              font-weight: 600;
+              margin: 0 0 10px 0;
+            "
+          >
+            Description
+          </p>
 
-                        <!-- Evaluation hint -->
-                        <p
-                          style="
-                            color: #6b7280;
-                            font-size: 13px;
-                            margin: 12px 0 0;
-                            line-height: 1.5;
-                          "
-                        >
-                          We’ll be reviewing code quality, structure, and overall user experience.
-                        </p>
-                      </td>
-                    </tr>
-                  </table>
+          <p
+            style="
+              color: #374151;
+              font-size: 15px;
+              line-height: 1.7;
+              margin: 0 0 16px 0;
+            "
+          >
+            {{ assignment_description }}
+          </p>
 
-                  <!-- Submission -->
-                  <p
-                    style="
-                      color: #6b7280;
-                      font-size: 16px;
-                      margin: 0 0 16px;
-                      line-height: 1.7;
-                    "
-                  >
-                    Once completed, please submit your assignment through the
-                    <strong>TeamShiksha Portal → Requests Dashboard</strong>.
-                  </p>
+          <!-- Deadline -->
+          <p
+            style="
+              color: #111827;
+              font-size: 16px;
+              font-weight: 600;
+              margin: 0 0 10px 0;
+            "
+          >
+            Submission deadline
+          </p>
 
-                  <!-- Closing -->
-                  <p
-                    style="
-                      color: #6b7280;
-                      font-size: 16px;
-                      margin: 0;
-                      line-height: 1.7;
-                    "
-                  >
-                    We look forward to reviewing your submission.
-                  </p>
-                </td>
-              </tr>
+          <p
+            style="
+              color: #2d4884;
+              font-size: 15px;
+              font-weight: 500;
+              line-height: 1.7;
+              margin: 0;
+            "
+          >
+            {{ deadline }}
+          </p>
 
-              <!-- Footer -->
-              <tr>
-                <td
-                  align="center"
-                  style="
-                    padding: 24px 32px;
-                    color: #9ca3af;
-                    font-size: 12px;
-                    border-top: 1px solid #f3f4f6;
-                  "
-                >
-                  <p style="margin: 8px 0">
-                    © 2025 TeamShiksha. All rights reserved.
-                  </p>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          <!-- Hint -->
+          <p
+            style="
+              color: #6b7280;
+              font-size: 13px;
+              line-height: 1.5;
+              margin: 12px 0 0 0;
+            "
+          >
+            We’ll be reviewing code quality, structure, and overall user experience.
+          </p>
+        </div>
+
+        <!-- Submission -->
+        <p
+          style="
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.7;
+            margin: 0 0 16px 0;
+          "
+        >
+          Once completed, please submit your assignment through the
+          <strong>TeamShiksha Portal → Requests Dashboard</strong>.
+        </p>
+
+        <!-- Closing -->
+        <p
+          style="
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.7;
+            margin: 0;
+          "
+        >
+          We look forward to reviewing your submission.
+        </p>
+      </div>
+
+      <!-- Footer -->
+      <div
+        style="
+          padding: 24px 32px;
+          text-align: center;
+          color: #9ca3af;
+          font-size: 12px;
+          line-height: 1.5;
+          border-top: 1px solid #f3f4f6;
+        "
+      >
+        <p style="margin: 16px 0 8px 0">
+          © 2025 TeamShiksha. All rights reserved.
+        </p>
+      </div>
+    </div>
   </body>
 </html>
