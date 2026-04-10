@@ -54,11 +54,15 @@ class SendEmailRequestBody(BaseModel):
             7: {"inviteeName", "eventName", "inviteText", "inviteLink"},
             8: {"url","email"},
             9: {},
-            10: {"eventName", "updatesText", "updatesLink"},
+            10: {"user", "project_assigned_to"},
+            11: {"user"},
+            12: {"assignment_title", "assignment_description", "deadline"},
+            13: {"eventName", "updatesText", "updatesLink"}
         }
 
         required_keys = required_keys_map.get(data.get("id"))
-        if not required_keys:
+
+        if required_keys is None:
             raise HTTPException(
                 status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
                 detail="Invalid id",
