@@ -60,13 +60,6 @@ class SendEmailRequestBody(BaseModel):
         }
 
         required_keys = required_keys_map.get(data.get("id"))
-
-        if required_keys is None:
-            raise HTTPException(
-                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                detail="Invalid id",
-            )
-
         if not all(key in body for key in required_keys):
             raise HTTPException(
                 status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
