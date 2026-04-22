@@ -56,7 +56,8 @@ class SendEmailRequestBody(BaseModel):
             9: {},
             10: {"user", "project_assigned_to"},
             11: {"user"},
-            12: {"assignment_title", "assignment_description", "deadline"}
+            12: {"assignment_title", "assignment_description", "deadline"},
+            13: {"eventName", "updatesText", "updatesLink"}
         }
 
         required_keys = required_keys_map.get(data.get("id"))
