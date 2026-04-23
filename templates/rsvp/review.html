@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Review Request</title>
+  </head>
+
+  <body style="margin:0; padding:0; background-color:#141415; font-family:'Inter', Verdana, sans-serif;">
+
+    <table style="border: 0; width:100%; padding:40px 0; border-collapse:collapse;">
+      <tr>
+        <th scope="col" style="display:none;">
+          Email Layout Container
+        </th>
+      </tr>
+      <tr>
+        <td style="align-items: center;">
+          <table style="border:0; max-width:600px; width:100%; margin:0 auto; padding:0 24px; border-collapse:collapse;">
+            <tr>
+              <th scope="col" style="display:none;">
+                Email Content Section
+              </th>
+            </tr>
+            <tr>
+              <td style="padding-bottom:20px; text-align: left;">
+                <img src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/main/images/logo.png"
+                  alt="RSVP Logo"
+                  style="display:block; border:0; outline:none; width:110px; height:55px;"/>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <img src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/main/images/verification-img.png"
+                  alt="Review Request"
+                  style="width:100%; height:auto; display:block; border-radius:10px;"
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td style="color:#ffffff; font-size:18px; line-height:28px; padding-top:24px;">
+                Hi {{name}},
+              </td>
+            </tr>
+
+            <tr>
+              <td style="color:#ffffff; font-size:16px; line-height:28px; padding-top:10px;">
+                Thank you for being a part of <strong>{{eventName}}</strong>!  
+                We hope the experience was memorable.  
+              </td>
+            </tr>
+
+            <tr>
+              <td style="color:#ffffff; font-size:16px; line-height:26px; padding-top:10px;">
+                To help us improve and assist others in making better choices, we would appreciate if you could take a moment to share your valuable feedback.
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding: 30px 0 10px 0; align-items: center;">
+                <table style="background-color:#ac6aff; width:100%; max-width:260px; margin:0 auto; border-collapse:collapse; border-radius:30px;">
+                  <tr>
+                    <th scope="col" style="display:none;">
+                      Call To Action Button
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="padding:14px 20px; text-align: center;">
+                      <a href="{{reviewLink}}" target="_blank"
+                        style="color:#ffffff; text-decoration:none; font-size:16px; font-weight:600; display:block;">
+                        Give Your Review
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="color:#ffffff; font-size:15px; line-height:24px; padding-top:24px;">
+                Your review helps us refine future experiences and provides helpful insights to other guests.
+              </td>
+            </tr>
+
+            <tr>
+              <td style="color:#ffffff; font-size:15px; line-height:24px; padding-top:20px; padding-bottom: 34px;">
+                Thanks & Regards,  
+                <br />
+                <strong>{{hostName}}</strong>
+                <br />
+                RSVP.KIM Team
+              </td>
+            </tr>
+
+            <tr>
+              <td style="color:#ffffff; font-size:13px; line-height:20px; padding-top:10px; border-top:1px solid #333; padding-bottom:20px;">
+                © 2025 <a href="https://rsvp.kim" style="color:#ac6aff; text-decoration:none;">RSVP.KIM</a>.  
+                All rights reserved.  
+                <br />
+                Powered by <a href="https://team.shiksha/" style="color:#ac6aff; text-decoration:none;">Team Shiksha</a>.
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>
