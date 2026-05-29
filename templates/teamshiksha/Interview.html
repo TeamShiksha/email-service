@@ -73,7 +73,7 @@
                       line-height: 1.7;
                     "
                   >
-                    Hi,
+                    Dear Participant,
                   </p>
 
                   <!-- Intro -->
@@ -85,8 +85,20 @@
                       line-height: 1.7;
                     "
                   >
-                    Your interview has been scheduled with TeamShiksha.
-                    Please find the details below and join on time.
+                    Your mock interview session has been successfully scheduled.
+                    Please find the details below.
+                  </p>
+
+                  <!-- Section Title: Interview Details -->
+                  <p
+                    style="
+                      color: #111827;
+                      font-size: 17px;
+                      font-weight: 600;
+                      margin: 0 0 12px 0;
+                    "
+                  >
+                    Interview Details
                   </p>
 
                   <!-- Interview Details Card -->
@@ -104,7 +116,7 @@
                   >
                     <tr>
                       <td style="text-align: left">
-                        <!-- Interviewer -->
+                        <!-- Time -->
                         <p style="margin: 0 0 16px; line-height: 1.5">
                           <strong
                             style="
@@ -114,24 +126,7 @@
                               font-size: 15px;
                             "
                           >
-                            Interviewer
-                          </strong>
-                          <span style="color: #374151; font-size: 15px">
-                            {{ interviewer_name }}
-                          </span>
-                        </p>
-
-                        <!-- Scheduled On -->
-                        <p style="margin: 0 0 16px; line-height: 1.5">
-                          <strong
-                            style="
-                              color: #111827;
-                              display: block;
-                              margin-bottom: 6px;
-                              font-size: 15px;
-                            "
-                          >
-                            Scheduled on
+                            Time
                           </strong>
                           <span
                             style="
@@ -141,6 +136,23 @@
                             "
                           >
                             {{ scheduled_on }}
+                          </span>
+                        </p>
+
+                        <!-- Mode -->
+                        <p style="margin: 0 0 16px; line-height: 1.5">
+                          <strong
+                            style="
+                              color: #111827;
+                              display: block;
+                              margin-bottom: 6px;
+                              font-size: 15px;
+                            "
+                          >
+                            Mode
+                          </strong>
+                          <span style="color: #374151; font-size: 15px">
+                            Online
                           </span>
                         </p>
 
@@ -172,6 +184,81 @@
                     </tr>
                   </table>
 
+                  <!-- Section Title: Participants -->
+                  <p
+                    style="
+                      color: #111827;
+                      font-size: 17px;
+                      font-weight: 600;
+                      margin: 0 0 12px 0;
+                    "
+                  >
+                    Participants
+                  </p>
+
+                  <!-- Participants Card -->
+                  <table
+                    width="100%"
+                    cellpadding="0"
+                    cellspacing="0"
+                    role="presentation"
+                    style="
+                      background: #f9fafb;
+                      border-radius: 12px;
+                      margin: 0 0 24px 0;
+                    "
+                  >
+                    <!-- Interviewee -->
+                    <tr>
+                      <td
+                        style="
+                          padding: 16px 24px;
+                          border-bottom: 1px solid #eef0f3;
+                          color: #6b7280;
+                          font-size: 14px;
+                        "
+                      >
+                        Interviewee
+                      </td>
+                      <td
+                        align="right"
+                        style="
+                          padding: 16px 24px;
+                          border-bottom: 1px solid #eef0f3;
+                          color: #111827;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                      >
+                        {{ interviewee_name }}
+                      </td>
+                    </tr>
+
+                    <!-- Interviewer -->
+                    <tr>
+                      <td
+                        style="
+                          padding: 16px 24px;
+                          color: #6b7280;
+                          font-size: 14px;
+                        "
+                      >
+                        Interviewer
+                      </td>
+                      <td
+                        align="right"
+                        style="
+                          padding: 16px 24px;
+                          color: #111827;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                      >
+                        {{ interviewer_name }}
+                      </td>
+                    </tr>
+                  </table>
+
                   <!-- Tips -->
                   <p
                     style="
@@ -181,8 +268,22 @@
                       line-height: 1.7;
                     "
                   >
-                    Please ensure you have a stable internet connection and join
-                    the meeting a few minutes early.
+                    Please ensure you join the meeting a few minutes before the
+                    scheduled time and have a stable internet connection for a
+                    smooth session.
+                  </p>
+
+                  <!-- Support -->
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 16px;
+                      line-height: 1.7;
+                    "
+                  >
+                    If you face any issues or need assistance, please reach out
+                    to the support team.
                   </p>
 
                   <!-- Closing -->
@@ -194,7 +295,7 @@
                       line-height: 1.7;
                     "
                   >
-                    Best of luck with your interview!
+                    Wishing you a productive and insightful mock interview session.
                   </p>
                 </td>
               </tr>
