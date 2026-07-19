@@ -7,7 +7,7 @@ from typing import Dict, Union
 from smtplib import SMTPException, SMTPAuthenticationError, SMTPSenderRefused
 import botocore.exceptions
 
-from app.utils import EmailSender, SESEmailSender
+from app.utils import EmailSender, SESEmailSender, AutosendEmailSender
 from app.schemas.email import SendEmailRequestBody, EmailProvider
 import base64
 import urllib.parse
@@ -19,7 +19,10 @@ class EmailService:
     """
 
     def __init__(
-        self, email_sender: Dict[EmailProvider, Union[EmailSender, SESEmailSender]]
+        self,
+        email_sender: Dict[
+            EmailProvider, Union[EmailSender, SESEmailSender, AutosendEmailSender]
+        ],
     ):
         self.email_sender = email_sender
 
@@ -124,7 +127,8 @@ class EmailService:
 
     def _handle_email_error(self, error: Exception):
         if isinstance(
-            error, (SMTPAuthenticationError, botocore.exceptions.ClientError)
+            error,
+            (PermissionError, SMTPAuthenticationError, botocore.exceptions.ClientError),
         ):
             raise PermissionError(f"Authentication failed: {str(error)}") from error
         elif isinstance(error, SMTPSenderRefused):

@@ -10,3 +10,7 @@ AWS_SECRET_KEY=somesecretkey
 AWS_ACCESS_KEY=someaccesskey
 AWS_REGION=someregion
 AWS_EMAIL=awsverifiedemail
+AUTOSEND_API_KEY=AS_yourprojectapikey
+AUTOSEND_FROM_EMAIL=verified@yourdomain.com
+AUTOSEND_FROM_NAME=Team Shiksha
+AUTOSEND_BASE_URL=https://api.autosend.com/v1

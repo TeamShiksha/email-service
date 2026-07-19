@@ -4,7 +4,7 @@ For environment validation and constants
 
 import os
 from typing import cast
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 SWAGGER_APP_DESCRIPTION = """
@@ -46,6 +46,11 @@ class Config(BaseSettings):
     Environmental variable validation class.
     """
 
+    # Read .env here rather than relying on run.py's load_dotenv(), which runs
+    # after this class is instantiated at import time. Real environment
+    # variables still take precedence, so hosted deployments are unaffected.
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+
     EMAIL_PORT: int = cast(int, os.getenv("EMAIL_PORT", "587"))
     EMAIL_HOST: str = cast(str, os.getenv("EMAIL_HOST", "smtp.gmail.com"))
     EMAIL_ADDRESS: str = cast(str, os.getenv("EMAIL_ADDRESS"))
@@ -60,5 +65,12 @@ class Config(BaseSettings):
     AWS_ACCESS_KEY: str = cast(str, os.getenv("AWS_USER_ACCESS_KEY"))
     AWS_REGION: str = cast(str, os.getenv("AWS_REGION"))
     AWS_EMAIL: str = cast(str, os.getenv("AWS_EMAIL"))
+
+    AUTOSEND_API_KEY: str = cast(str, os.getenv("AUTOSEND_API_KEY", ""))
+    AUTOSEND_FROM_EMAIL: str = cast(str, os.getenv("AUTOSEND_FROM_EMAIL", ""))
+    AUTOSEND_FROM_NAME: str = cast(str, os.getenv("AUTOSEND_FROM_NAME", ""))
+    AUTOSEND_BASE_URL: str = cast(
+        str, os.getenv("AUTOSEND_BASE_URL", "https://api.autosend.com/v1")
+    )
 
 config = Config()
