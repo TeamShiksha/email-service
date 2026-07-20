@@ -12,6 +12,7 @@ from app.schemas.email import SendEmailRequestBody, SendEmailResponseBody, Email
 from app.utils import (
     EmailSender,
     SESEmailSender,
+    AutosendEmailSender,
     success_response,
     get_email_sender,
     require_authentication,
@@ -27,9 +28,9 @@ templates = Jinja2Templates(directory="templates")
 async def send_email(
     request: Request,
     email_details: SendEmailRequestBody,
-    email_sender: Dict[EmailProvider, Union[EmailSender, SESEmailSender]] = Depends(
-        get_email_sender
-    ),
+    email_sender: Dict[
+        EmailProvider, Union[EmailSender, SESEmailSender, AutosendEmailSender]
+    ] = Depends(get_email_sender),
 ):
     """
     Sends an email to the recipient using provided details.

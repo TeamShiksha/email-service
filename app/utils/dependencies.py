@@ -7,7 +7,7 @@ from typing import Dict, Union
 from fastapi import HTTPException, Request
 from app.config import config
 from app.schemas.email import EmailProvider
-from .email_sender import EmailSender, SESEmailSender
+from .email_sender import EmailSender, SESEmailSender, AutosendEmailSender
 
 
 def require_authentication():
@@ -29,7 +29,9 @@ def require_authentication():
     return decorator
 
 
-def get_email_sender() -> Dict[EmailProvider, Union[EmailSender, SESEmailSender]]:
+def get_email_sender() -> (
+    Dict[EmailProvider, Union[EmailSender, SESEmailSender, AutosendEmailSender]]
+):
     """
     Creates and returns a dictionary of email sender objects.
     This function is used as a dependency injection in the controller.
@@ -48,4 +50,15 @@ def get_email_sender() -> Dict[EmailProvider, Union[EmailSender, SESEmailSender]
         aws_email=config.AWS_EMAIL,
     )
 
-    return {EmailProvider.GMAIL: gmail_sender, EmailProvider.SES: ses_sender}
+    autosend_sender = AutosendEmailSender(
+        api_key=config.AUTOSEND_API_KEY,
+        from_email=config.AUTOSEND_FROM_EMAIL,
+        from_name=config.AUTOSEND_FROM_NAME,
+        base_url=config.AUTOSEND_BASE_URL,
+    )
+
+    return {
+        EmailProvider.GMAIL: gmail_sender,
+        EmailProvider.SES: ses_sender,
+        EmailProvider.AUTOSEND: autosend_sender,
+    }

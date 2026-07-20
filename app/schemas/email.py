@@ -12,6 +12,7 @@ from app.config import config
 class EmailProvider(str, Enum):
     GMAIL = "GMAIL"
     SES = "SES"
+    AUTOSEND = "AUTOSEND"
 
 
 class SendEmailRequestBody(BaseModel):
