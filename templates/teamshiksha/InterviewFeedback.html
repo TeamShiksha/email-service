@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview Feedback - TeamShiksha</title>
+  </head>
+
+  <body
+    style="
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #e6f0ff;
+    "
+  >
+    <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+      <tbody>
+        <tr>
+          <td align="center">
+            <table
+              width="100%"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="
+                max-width: 550px;
+                margin: 0 auto;
+                background: white;
+                border-radius: 16px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+              "
+            >
+              <!-- Header -->
+              <tr>
+                <td
+                  align="center"
+                  style="
+                    padding: 40px 32px 32px;
+                    border-bottom: 1px solid #f3f4f6;
+                  "
+                >
+                  <img
+                    src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/prod/images/teamshiksha.png"
+                    alt="TeamShiksha"
+                    style="width: 200px; display: block; margin: 0 auto"
+                  />
+
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      font-weight: 500;
+                      margin: 12px 0 0;
+                      line-height: 1.4;
+                    "
+                  >
+                    A Growth Community For Everyone Who Wants To Learn
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Body -->
+              <tr>
+                <td style="padding: 32px 24px; text-align: left">
+                  <!-- Greeting -->
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 16px 0;
+                      line-height: 1.7;
+                    "
+                  >
+                    Hi {{ interviewee_name }},
+                  </p>
+
+                  <!-- Intro -->
+                  {% if status | upper == 'NO_SHOW' %}
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 24px 0;
+                      line-height: 1.7;
+                    "
+                  >
+                    We had your interview for the
+                    <strong style="color: #111827">{{ for_role }}</strong>
+                    role scheduled with TeamShiksha, but unfortunately you were
+                    unable to attend. We understand that unexpected situations
+                    can come up, and we'd still love the chance to connect with
+                    you.
+                  </p>
+                  {% else %}
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 24px 0;
+                      line-height: 1.7;
+                    "
+                  >
+                    Thank you for taking the time to interview with TeamShiksha
+                    for the
+                    <strong style="color: #111827">{{ for_role }}</strong>
+                    role. We genuinely appreciate your effort you invested
+                    throughout the interview process. Please find the summary of
+                    your interview below.
+                  </p>
+                  {% endif %} {% if rating or feedback %}
+                  <!-- Feedback Details Card -->
+                  <table
+                    width="100%"
+                    cellpadding="0"
+                    cellspacing="0"
+                    role="presentation"
+                    style="
+                      background: #f9fafb;
+                      border: 1px solid #eef0f3;
+                      border-radius: 12px;
+                      margin: 24px 0;
+                    "
+                  >
+                    <tr>
+                      <td style="padding: 24px; text-align: left">
+                        {% if rating %}
+                        <!-- Rating -->
+                        {% set _r = rating | upper %} {% if _r == 'GOOD_HIRE' %}
+                        {% set chip_bg = '#e7f6ec' %}{% set chip_fg = '#1f7a3d'
+                        %} {% elif _r == 'NEEDS_IMPROVEMENT' %} {% set chip_bg =
+                        '#fff4e5' %}{% set chip_fg = '#9a6700' %} {% elif _r ==
+                        'NOT_YET_READY' %} {% set chip_bg = '#fdecec' %}{% set
+                        chip_fg = '#b42318' %} {% else %} {% set chip_bg =
+                        '#eaf0fb' %}{% set chip_fg = '#2d4884' %} {% endif %}
+                        <strong
+                          style="
+                            color: #111827;
+                            display: block;
+                            margin-bottom: 10px;
+                            font-size: 15px;
+                          "
+                        >
+                          Rating
+                        </strong>
+                        <span
+                          style="
+                            display: inline-block;
+                            background: {{ chip_bg }};
+                            color: {{ chip_fg }};
+                            font-size: 14px;
+                            font-weight: 600;
+                            letter-spacing: 0.02em;
+                            padding: 6px 14px;
+                            border-radius: 999px;
+                          "
+                        >
+                          {{ rating | replace('_', ' ') | title }}
+                        </span>
+                        {% endif %} {% if rating and feedback %}
+                        <!-- Divider -->
+                        <div
+                          style="border-top: 1px solid #eef0f3; margin: 20px 0"
+                        ></div>
+                        {% endif %} {% if feedback %}
+                        <!-- Feedback -->
+                        <strong
+                          style="
+                            color: #111827;
+                            display: block;
+                            margin-bottom: 8px;
+                            font-size: 15px;
+                          "
+                        >
+                          Interviewer's Feedback
+                        </strong>
+                        <span
+                          style="
+                            color: #374151;
+                            font-size: 15px;
+                            line-height: 1.7;
+                          "
+                        >
+                          {{ feedback }}
+                        </span>
+                        {% endif %}
+                      </td>
+                    </tr>
+                  </table>
+                  {% endif %} {% if cooldown_end_on and (status | upper ==
+                  'NO_SHOW' or rating | upper == 'NOT_YET_READY') %}
+                  <!-- Reapplication -->
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 16px;
+                      line-height: 1.7;
+                    "
+                  >
+                    You are welcome to apply again on or after
+                    <strong style="color: #2d4884"
+                      >{{ cooldown_end_on.lstrip('0') }}</strong
+                    >. We would be delighted to reconnect and learn about your
+                    progress.
+                  </p>
+                  {% endif %}
+
+                  <!-- Closing -->
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0;
+                      line-height: 1.7;
+                    "
+                  >
+                    Thank you for participating.
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Footer -->
+              <tr>
+                <td
+                  align="center"
+                  style="
+                    padding: 24px 32px;
+                    color: #9ca3af;
+                    font-size: 12px;
+                    border-top: 1px solid #f3f4f6;
+                  "
+                >
+                  <p style="margin: 8px 0">
+                    © 2025 TeamShiksha. All rights reserved.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

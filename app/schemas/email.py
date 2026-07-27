@@ -60,6 +60,8 @@ class SendEmailRequestBody(BaseModel):
             12: {"assignment_title", "assignment_description", "deadline"},
             13: {"otp", "email"},
             14: {"email", "magicLink"},
+            15: {"interviewee_name", "interviewer_name", "scheduled_on", "join_link"},
+            16: {"interviewee_name", "for_role", "status"},
         }
 
         required_keys = required_keys_map.get(data.get("id"))

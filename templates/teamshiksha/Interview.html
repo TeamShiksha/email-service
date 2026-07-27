@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview - TeamShiksha</title>
+  </head>
+
+  <body
+    style="
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #e6f0ff;
+    "
+  >
+    <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+      <tbody>
+        <tr>
+          <td align="center">
+            <table
+              width="100%"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="
+                max-width: 550px;
+                margin: 0 auto;
+                background: white;
+                border-radius: 16px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+              "
+            >
+              <!-- Header -->
+              <tr>
+                <td
+                  align="center"
+                  style="
+                    padding: 40px 32px 32px;
+                    border-bottom: 1px solid #f3f4f6;
+                  "
+                >
+                  <img
+                    src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/prod/images/teamshiksha.png"
+                    alt="TeamShiksha"
+                    style="width: 200px; display: block; margin: 0 auto"
+                  />
+
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      font-weight: 500;
+                      margin: 12px 0 0;
+                      line-height: 1.4;
+                    "
+                  >
+                    A Growth Community For Everyone Who Wants To Learn
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Body -->
+              <tr>
+                <td style="padding: 32px 24px; text-align: left">
+                  <!-- Greeting -->
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 16px 0;
+                      line-height: 1.7;
+                    "
+                  >
+                    Hi {{ interviewee_name }},
+                  </p>
+
+                  <!-- Intro -->
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 24px 0;
+                      line-height: 1.7;
+                    "
+                  >
+                    Your interview has been scheduled with TeamShiksha.
+                    Please find the details below and join on time.
+                  </p>
+
+                  <!-- Interview Details Card -->
+                  <table
+                    width="100%"
+                    cellpadding="0"
+                    cellspacing="0"
+                    role="presentation"
+                    style="
+                      background: #f9fafb;
+                      border-radius: 12px;
+                      padding: 24px;
+                      margin: 24px 0;
+                    "
+                  >
+                    <tr>
+                      <td style="text-align: left">
+                        <!-- Interviewer -->
+                        <p style="margin: 0 0 16px; line-height: 1.5">
+                          <strong
+                            style="
+                              color: #111827;
+                              display: block;
+                              margin-bottom: 6px;
+                              font-size: 15px;
+                            "
+                          >
+                            Interviewer
+                          </strong>
+                          <span style="color: #374151; font-size: 15px">
+                            {{ interviewer_name }}
+                          </span>
+                        </p>
+
+                        <!-- Scheduled On -->
+                        <p style="margin: 0 0 16px; line-height: 1.5">
+                          <strong
+                            style="
+                              color: #111827;
+                              display: block;
+                              margin-bottom: 6px;
+                              font-size: 15px;
+                            "
+                          >
+                            Scheduled on
+                          </strong>
+                          <span
+                            style="
+                              color: #2d4884;
+                              font-weight: 500;
+                              font-size: 15px;
+                            "
+                          >
+                            {{ scheduled_on }}
+                          </span>
+                        </p>
+
+                        <!-- Join Link -->
+                        <p style="margin: 0; line-height: 1.5">
+                          <strong
+                            style="
+                              color: #111827;
+                              display: block;
+                              margin-bottom: 6px;
+                              font-size: 15px;
+                            "
+                          >
+                            Meeting link
+                          </strong>
+                          <a
+                            href="{{ join_link }}"
+                            style="
+                              color: #2d4884;
+                              font-size: 15px;
+                              text-decoration: none;
+                              word-break: break-all;
+                            "
+                          >
+                            {{ join_link }}
+                          </a>
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <!-- Tips -->
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 16px;
+                      line-height: 1.7;
+                    "
+                  >
+                    Please ensure you have a stable internet connection and join
+                    the meeting a few minutes early.
+                  </p>
+
+                  <!-- Closing -->
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0;
+                      line-height: 1.7;
+                    "
+                  >
+                    Best of luck with your interview!
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Footer -->
+              <tr>
+                <td
+                  align="center"
+                  style="
+                    padding: 24px 32px;
+                    color: #9ca3af;
+                    font-size: 12px;
+                    border-top: 1px solid #f3f4f6;
+                  "
+                >
+                  <p style="margin: 8px 0">
+                    © 2025 TeamShiksha. All rights reserved.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
