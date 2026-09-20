@@ -10,22 +10,22 @@
     <div style="display: none; max-height: 0; overflow: hidden; opacity: 0; color: transparent;">
       Your RSVP sign-in code is {{otp}}. It expires in {{expiresInMinutes|default('5')}} minutes.
     </div>
-    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width: 100%; background-color: #f5f6fb;">
+    <table role="presentation" style="width: 100%; border: 0; border-spacing: 0; background-color: #f5f6fb;">
       <tbody>
         <tr>
-          <td align="center" style="padding: 36px 16px;">
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width: 100%; max-width: 600px; overflow: hidden; border: 1px solid #e5e7f0; border-radius: 22px; background-color: #ffffff; box-shadow: 0 18px 55px rgba(31, 36, 64, 0.09);">
+          <td style="padding: 36px 16px; text-align: center;">
+            <table role="presentation" style="width: 100%; max-width: 600px; margin: 0 auto; overflow: hidden; border: 1px solid #e5e7f0; border-spacing: 0; border-radius: 22px; background-color: #ffffff; box-shadow: 0 18px 55px rgba(31, 36, 64, 0.09); text-align: left;">
               <tbody>
                 <tr>
                   <td style="height: 7px; background-color: #6255f5; background-image: linear-gradient(90deg, #6255f5, #7d79ff 52%, #83d8f5); font-size: 0; line-height: 0;">&nbsp;</td>
                 </tr>
                 <tr>
                   <td style="padding: 28px 38px 20px;">
-                    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                    <table role="presentation" style="width: 100%; border: 0; border-spacing: 0;">
                       <tbody>
                         <tr>
                           <td style="color: #101426; font-size: 24px; font-weight: 800; letter-spacing: -1px;">RSVP<span style="color: #6f63f6;">.</span></td>
-                          <td align="right" style="color: #6f7184; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase;">Secure sign-in</td>
+                          <td style="color: #6f7184; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-align: right; text-transform: uppercase;">Secure sign-in</td>
                         </tr>
                       </tbody>
                     </table>
@@ -40,10 +40,10 @@
                     </p>
 
                     {% if otp %}
-                    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="margin-bottom: 14px; border: 1px solid #dcd9ff; border-radius: 16px; background-color: #f6f4ff;">
+                    <table role="presentation" style="width: 100%; margin-bottom: 14px; border: 1px solid #dcd9ff; border-spacing: 0; border-radius: 16px; background-color: #f6f4ff;">
                       <tbody>
                         <tr>
-                          <td align="center" style="padding: 24px 18px; color: #242044; font-family: 'Courier New', monospace; font-size: 36px; font-weight: 800; letter-spacing: 9px; line-height: 1;">{{otp}}</td>
+                          <td style="padding: 24px 18px; color: #242044; font-family: 'Courier New', monospace; font-size: 36px; font-weight: 800; letter-spacing: 9px; line-height: 1; text-align: center;">{{otp}}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -52,27 +52,27 @@
                     </p>
                     {% endif %}
 
-                    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="margin: 0 0 24px;">
+                    <table role="presentation" style="width: 100%; margin: 0 0 24px; border: 0; border-spacing: 0;">
                       <tbody>
                         <tr>
                           <td style="width: 44%; border-top: 1px solid #e6e7ef; font-size: 0; line-height: 0;">&nbsp;</td>
-                          <td align="center" style="padding: 0 12px; color: #8b8fa1; font-size: 12px;">or</td>
+                          <td style="padding: 0 12px; color: #8b8fa1; font-size: 12px; text-align: center;">or</td>
                           <td style="width: 44%; border-top: 1px solid #e6e7ef; font-size: 0; line-height: 0;">&nbsp;</td>
                         </tr>
                       </tbody>
                     </table>
 
-                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="margin: 0 auto 26px;">
+                    <table role="presentation" style="margin: 0 auto 26px; border: 0; border-spacing: 0;">
                       <tbody>
                         <tr>
-                          <td align="center" style="border-radius: 12px; background-color: #11152a; box-shadow: 0 8px 22px rgba(17, 21, 42, 0.2);">
+                          <td style="border-radius: 12px; background-color: #11152a; box-shadow: 0 8px 22px rgba(17, 21, 42, 0.2); text-align: center;">
                             <a href="{{magicLink}}" target="_blank" style="display: inline-block; padding: 15px 25px; color: #ffffff; font-size: 15px; font-weight: 700; line-height: 1; text-decoration: none;">Sign in to RSVP &nbsp;→</a>
                           </td>
                         </tr>
                       </tbody>
                     </table>
 
-                    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius: 12px; background-color: #f7f8fb;">
+                    <table role="presentation" style="width: 100%; border: 0; border-spacing: 0; border-radius: 12px; background-color: #f7f8fb;">
                       <tbody>
                         <tr>
                           <td style="padding: 15px 17px; color: #6b7084; font-size: 13px; line-height: 1.55;">
