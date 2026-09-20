@@ -1,69 +1,99 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!doctype html>
 <html dir="ltr" lang="en">
-<head>
-    <link rel="preload" as="image" href="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/main/images/logo.png" />
-    <link rel="preload" as="image" href="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/main/images/verification-img.png" />
+  <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <meta name="x-apple-disable-message-reformatting" />
-</head>
-<body style="background: #141415; font-family: 'Inter', Verdana; padding-top: 2.5rem; padding-bottom: 2.5rem;">
-<table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="max-width: 37.5em; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem;">
-    <tbody>
-    <tr>
-        <td>
-            <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                <tbody>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your RSVP sign-in code</title>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #f5f6fb; color: #101426; font-family: Inter, Arial, sans-serif;">
+    <div style="display: none; max-height: 0; overflow: hidden; opacity: 0; color: transparent;">
+      Your RSVP sign-in code is {{otp}}. It expires in {{expiresInMinutes|default('5')}} minutes.
+    </div>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width: 100%; background-color: #f5f6fb;">
+      <tbody>
+        <tr>
+          <td align="center" style="padding: 36px 16px;">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width: 100%; max-width: 600px; overflow: hidden; border: 1px solid #e5e7f0; border-radius: 22px; background-color: #ffffff; box-shadow: 0 18px 55px rgba(31, 36, 64, 0.09);">
+              <tbody>
                 <tr>
-                    <td>
-                        <img alt="Team shiksha logo" src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/main/images/logo.png" width="100" height="50" style="display: block; outline: none; border: none; text-decoration: none;" />
-                    </td>
+                  <td style="height: 7px; background-color: #6255f5; background-image: linear-gradient(90deg, #6255f5, #7d79ff 52%, #83d8f5); font-size: 0; line-height: 0;">&nbsp;</td>
                 </tr>
-                </tbody>
-            </table>
-            <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                <tbody>
                 <tr>
-                    <td>
-                        <img src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/main/images/verification-img.png" style="display: block; outline: none; border: none; text-decoration: none; height: auto; width: 100%;" />
-                        <p style="font-size: 2.25rem; line-height: 2.5rem; margin: 16px 0; margin-top: 2.75rem; font-weight: 600; color: rgb(255, 255, 255);">Hi</p>
-                        <p style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0; margin-top: 1.5rem; color: rgb(255, 255, 255);">
-                            We're excited to have you join our community of creators! To securely access your account, simply click the magic link below:
-                        </p>
-                        <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color: #ac6aff; font-size: 16px; width: fit-content; padding: 10px 20px; border-radius: 20px; margin-left: 0;">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <a href="{{magicLink}}" target="_blank" style="color: white; text-decoration: none; font-size: 14px;">Click here to login to your account</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <p style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0; margin-top: 1.5rem; color: rgb(255, 255, 255);">
-                            This link will expire in 10 Minutes. Once inside, you'll have access to our full suite of intuitive events and can create one. Our team is here to support you every step of the way.
-                        </p>
-                        <p style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0; margin-top: 1.5rem; color: rgb(255, 255, 255);">Happy Unforgettable events!</p>
-                        <p style="font-size: 1.125rem; line-height: 1.75rem; margin: 16px 0; margin-top: 1.5rem; color: rgb(255, 255, 255);">Team Shiksha</p>
-                    </td>
+                  <td style="padding: 28px 38px 20px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="color: #101426; font-size: 24px; font-weight: 800; letter-spacing: -1px;">RSVP<span style="color: #6f63f6;">.</span></td>
+                          <td align="right" style="color: #6f7184; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase;">Secure sign-in</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
                 </tr>
-                </tbody>
-            </table>
-            <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                <tbody>
                 <tr>
-                    <td>
-                        <p style="font-size: 0.875rem; line-height: 1.25rem; margin: 16px 0; color: rgb(255, 255, 255);">
-                            This email was sent to <span>{{email}}</span>.
-                        </p>
-                        <p style="font-size: 0.875rem; line-height: 1.25rem; margin: 16px 0; color: rgb(255, 255, 255);">
-                            © 2025 <a href="https://rsvp.kim" target="_blank" style="color: #ac6aff; text-decoration: none;">RSVP.KIM</a>. All rights reserved. Powered by <a href="https://team.shiksha/" target="_blank" style="color: #ac6aff; text-decoration: none;">Team Shiksha</a>
-                        </p>
-                    </td>
+                  <td style="padding: 10px 38px 38px;">
+                    <p style="margin: 0 0 10px; color: #6255f5; font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;">Welcome back</p>
+                    <h1 style="margin: 0 0 14px; color: #101426; font-size: 34px; line-height: 1.18; letter-spacing: -1.2px;">Your sign-in code</h1>
+                    <p style="margin: 0 0 25px; color: #555b70; font-size: 16px; line-height: 1.65;">
+                      Use this code to sign in as <strong style="color: #292e43;">{{email}}</strong>.
+                    </p>
+
+                    {% if otp %}
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="margin-bottom: 14px; border: 1px solid #dcd9ff; border-radius: 16px; background-color: #f6f4ff;">
+                      <tbody>
+                        <tr>
+                          <td align="center" style="padding: 24px 18px; color: #242044; font-family: 'Courier New', monospace; font-size: 36px; font-weight: 800; letter-spacing: 9px; line-height: 1;">{{otp}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p style="margin: 0 0 27px; color: #777b8f; font-size: 13px; line-height: 1.5; text-align: center;">
+                      This code expires in {{expiresInMinutes|default('5')}} minutes.
+                    </p>
+                    {% endif %}
+
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="margin: 0 0 24px;">
+                      <tbody>
+                        <tr>
+                          <td style="width: 44%; border-top: 1px solid #e6e7ef; font-size: 0; line-height: 0;">&nbsp;</td>
+                          <td align="center" style="padding: 0 12px; color: #8b8fa1; font-size: 12px;">or</td>
+                          <td style="width: 44%; border-top: 1px solid #e6e7ef; font-size: 0; line-height: 0;">&nbsp;</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="margin: 0 auto 26px;">
+                      <tbody>
+                        <tr>
+                          <td align="center" style="border-radius: 12px; background-color: #11152a; box-shadow: 0 8px 22px rgba(17, 21, 42, 0.2);">
+                            <a href="{{magicLink}}" target="_blank" style="display: inline-block; padding: 15px 25px; color: #ffffff; font-size: 15px; font-weight: 700; line-height: 1; text-decoration: none;">Sign in to RSVP &nbsp;→</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius: 12px; background-color: #f7f8fb;">
+                      <tbody>
+                        <tr>
+                          <td style="padding: 15px 17px; color: #6b7084; font-size: 13px; line-height: 1.55;">
+                            If you did not request this email, you can safely ignore it. Never share this code or forward this message.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
                 </tr>
-                </tbody>
+                <tr>
+                  <td style="border-top: 1px solid #ececf2; padding: 22px 38px 28px; color: #888b9b; font-size: 12px; line-height: 1.6;">
+                    Sent to {{email}} by RSVP.<br />
+                    © 2026 <a href="https://rsvp.kim" target="_blank" style="color: #6255f5; text-decoration: none;">RSVP.KIM</a> · Powered by <a href="https://team.shiksha/" target="_blank" style="color: #6255f5; text-decoration: none;">Team Shiksha</a>
+                  </td>
+                </tr>
+              </tbody>
             </table>
-        </td>
-    </tr>
-    </tbody>
-</table>
-</body>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
 </html>
