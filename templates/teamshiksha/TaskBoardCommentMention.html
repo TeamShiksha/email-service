@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Board Comments Mention - TeamShiksha</title>
+  </head>
+
+  <body
+    style="
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #e6f0ff;
+    "
+  >
+    <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+      <tbody>
+        <tr>
+          <td align="center">
+            <table
+              width="100%"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="
+                max-width: 550px;
+                margin: 0 auto;
+                background: white;
+                border-radius: 16px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+              "
+            >
+              <!-- Header -->
+              <tr>
+                <td
+                  align="center"
+                  style="
+                    padding: 40px 32px 32px;
+                    border-bottom: 1px solid #f3f4f6;
+                  "
+                >
+                  <img
+                    src="https://raw.githubusercontent.com/TeamShiksha/email-service/refs/heads/prod/images/teamshiksha.png"
+                    alt="TeamShiksha"
+                    style="width: 200px; height: auto; display: block; margin: 0 auto"
+                  />
+
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      font-weight: 500;
+                      margin: 12px 0 0;
+                      line-height: 1.4;
+                    "
+                  >
+                    A Growth Community For Everyone Who Wants To Learn
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Content Body -->
+              <tr>
+                <td style="padding: 32px 24px; text-align: left">
+                  <!-- Greeting -->
+                  <p
+                    style="
+                      color: #6b7280;
+                      font-size: 16px;
+                      margin: 0 0 16px 0;
+                      line-height: 1.7;
+                    "
+                  >
+                    Hi {{ user }},
+                  </p>
+
+                  <!-- Notification text -->
+                  <p
+                    style="
+                      color: #4b5563;
+                      font-size: 16px;
+                      margin: 0 0 20px 0;
+                      line-height: 1.7;
+                    "
+                  >
+                    <strong style="color: #111827">{{ author }}</strong> mentioned you in a comment on task
+                    <strong style="color: #111827">"{{ task_title }}"</strong> in
+                    <strong style="color: #2d4884">{{ project_name }}</strong>.
+                  </p>
+
+                  <!-- Comment Card -->
+                  <table
+                    width="100%"
+                    cellpadding="0"
+                    cellspacing="0"
+                    role="presentation"
+                    style="
+                      background: #f9fafb;
+                      border-radius: 12px;
+                      border-left: 4px solid #2d4884;
+                      padding: 20px;
+                      margin: 20px 0 28px 0;
+                    "
+                  >
+                    <tr>
+                      <td style="text-align: left">
+                        <p
+                          style="
+                            margin: 0 0 8px 0;
+                            font-size: 13px;
+                            font-weight: 600;
+                            color: #6b7280;
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                          "
+                        >
+                          Comment Preview
+                        </p>
+                        <p
+                          style="
+                            margin: 0;
+                            color: #374151;
+                            font-size: 15px;
+                            line-height: 1.6;
+                            font-style: italic;
+                          "
+                        >
+                          "{{ comment }}"
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <!-- CTA Button -->
+                  <table
+                    align="center"
+                    role="presentation"
+                    cellspacing="0"
+                    cellpadding="0"
+                    style="margin: 0 auto 28px auto"
+                  >
+                    <tbody>
+                      <tr>
+                        <td align="center" bgcolor="#2d4884" style="border-radius: 12px">
+                          <a
+                            href="{{ url }}"
+                            target="_blank"
+                            style="
+                              display: inline-block;
+                              background: #2d4884;
+                              color: #ffffff !important;
+                              text-decoration: none;
+                              padding: 14px 32px;
+                              font-weight: 500;
+                              font-size: 16px;
+                              border-radius: 12px;
+                            "
+                          >
+                            View Task Comment →
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <!-- Fallback note -->
+                  <p
+                    style="
+                      color: #9ca3af;
+                      font-size: 13px;
+                      margin: 0;
+                      line-height: 1.6;
+                      text-align: center;
+                    "
+                  >
+                    If the button doesn't work, copy and paste this link into your browser:<br />
+                    <a href="{{ url }}" style="color: #2d4884; word-break: break-all">{{ url }}</a>
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Footer -->
+              <tr>
+                <td
+                  align="center"
+                  style="
+                    padding: 24px 32px;
+                    color: #9ca3af;
+                    font-size: 12px;
+                    line-height: 1.5;
+                    border-top: 1px solid #f3f4f6;
+                  "
+                >
+                  <p style="margin: 8px 0">
+                    You received this email because you were tagged in a task board discussion.
+                  </p>
+                  <p style="margin: 8px 0">
+                    © 2025 TeamShiksha. All rights reserved.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
