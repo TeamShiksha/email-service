@@ -6,7 +6,7 @@ architecture, the API and why audiences are never sent with BCC.
 ## Run and test
 
 ```bash
-pip install -r requirements-dev.txt
+pip install --require-hashes --only-binary :all: -r requirements-dev.lock
 python -m pytest -q
 pylint app --rcfile=.pylintrc
 python run.py

@@ -33,7 +33,7 @@ delivers one message per recipient through the configured provider.
 ```bash
 git clone https://github.com/TeamShiksha/email-service.git
 cd email-service
-pip install -r requirements-dev.txt
+pip install --require-hashes --only-binary :all: -r requirements-dev.lock
 python -m pytest -q
 python run.py
 ```
