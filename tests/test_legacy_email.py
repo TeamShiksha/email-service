@@ -153,8 +153,12 @@ def test_provider_is_passed_through(client, provider):
 
 
 def test_provider_defaults_to_configured(client, provider):
-    post(client, {"id": 6, "subject": "s", "recipient": "a@example.com", "body": UPDATE_BODY})
+    response = post(
+        client, {"id": 6, "subject": "s", "recipient": "a@example.com", "body": UPDATE_BODY}
+    )
     assert provider.requested["name"] is None  # resolved to DEFAULT_EMAIL_PROVIDER
+    # The echo names the provider used, as the old schema's SES default did.
+    assert response.json()["details"]["provider"] == "SES"
 
 
 def test_ticket_attaches_calendar_invite(client, provider):
