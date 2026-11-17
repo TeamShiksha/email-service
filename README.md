@@ -1,6 +1,15 @@
-# email-service
+# notification-service
 
-This project provides a standalone email service to manage email functionalities for all TeamShiksha applications. It offers flexibility, reliability, and ease of integration across multiple projects.
+A shared notification service for all TeamShiksha applications. Projects send a
+template key and a list of recipients; the service renders the template and
+delivers one message per recipient through the configured provider.
+
+- **Channels:** email today (Amazon SES, Autosend, Gmail SMTP). The API and
+  provider layer are channel-agnostic, ready for SMS, WhatsApp and push.
+- **No BCC blasts:** audiences are sent as individual messages (batched
+  through Autosend's bulk API where possible), which is what keeps them out of
+  spam. See [docs/notification-service.md](./docs/notification-service.md).
+- **Backward compatible:** existing callers of `POST /email` keep working.
 
 ## Made with
 
@@ -15,7 +24,8 @@ This project provides a standalone email service to manage email functionalities
 
 ## Set environmental variables
 
-- Use the `.env_example` file as a reference to set up your environment variables.
+- Use the `env_example` file as a reference to set up your environment variables.
+- Only `APP_SECRET` is required; each provider is enabled when its settings are present.
 - Rename it to `.env` and populate the required values.
 
 ## Run the project locally
@@ -23,7 +33,8 @@ This project provides a standalone email service to manage email functionalities
 ```bash
 git clone https://github.com/TeamShiksha/email-service.git
 cd email-service
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
+python -m pytest -q
 python run.py
 ```
 
@@ -32,7 +43,19 @@ python run.py
 - By default, the app runs at: `http://localhost:{PORT}`, where PORT is the value you provided in the `.env` file. In case, it's not provided the app will run on PORT `8000`.
 - Navigate to the `/`, `/docs`, or `/openapi.json` routes for API documentation and to explore all the available endpoints.
 
-Click [here](./DEVELOPMENT.md) to learn how to setup your template and trigger the endpoint.
+## Send a notification
+
+```bash
+curl -X POST "$URL/v1/notifications" \
+  -H "Authorization: Bearer $APP_SECRET" -H "Content-Type: application/json" \
+  -d '{"template":"rsvp.update","subject":"Starting soon",
+       "data":{"eventName":"Meetup","updatesText":"6pm","updatesLink":"https://..."},
+       "recipients":[{"to":"a@example.com"},{"to":"b@example.com"}]}'
+```
+
+`GET /v1/templates` lists every template and the data it needs.
+
+Click [here](./DEVELOPMENT.md) to learn how to add a template.
 
 ---
 <p align="center" style="text"><strong>If you liked something about this repository, do give it a 🌟.</strong></p>

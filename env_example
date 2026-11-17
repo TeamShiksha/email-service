@@ -1,16 +1,31 @@
-EMAIL_PORT=587
-EMAIL_HOST=smtp.gmail.com
-EMAIL_ADDRESS=email@gmail.com
-EMAIL_PASSWORD=somepassword
+# Required: shared secret callers send in the Authorization header
 APP_SECRET=appsectsdjsnd
 ENV=development
 ORIGINS=https://abc.com,https://kbc.com
 PORT=5000
+
+# Provider used when a request does not name one: SES | AUTOSEND | GMAIL
+DEFAULT_EMAIL_PROVIDER=SES
+# Max recipients per request (each recipient is a separate message)
+MAX_RECIPIENTS_PER_REQUEST=500
+
+# Every provider below is optional; it is enabled when its settings are set.
+
+# Gmail / SMTP
+EMAIL_PORT=587
+EMAIL_HOST=smtp.gmail.com
+EMAIL_ADDRESS=email@gmail.com
+EMAIL_PASSWORD=somepassword
+
+# Amazon SES
 AWS_SECRET_KEY=somesecretkey
 AWS_ACCESS_KEY=someaccesskey
 AWS_REGION=someregion
 AWS_EMAIL=awsverifiedemail
+
+# Autosend
 AUTOSEND_API_KEY=AS_yourprojectapikey
 AUTOSEND_FROM_EMAIL=verified@yourdomain.com
 AUTOSEND_FROM_NAME=Team Shiksha
 AUTOSEND_BASE_URL=https://api.autosend.com/v1
+AUTOSEND_REQUESTS_PER_SECOND=2

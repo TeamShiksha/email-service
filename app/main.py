@@ -2,20 +2,30 @@
 Configuring the app
 """
 
-from fastapi import FastAPI
+import logging
+
+from fastapi import FastAPI, HTTPException
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import HTTPException
+
 from app.config import config
-from app.routers.email_router import email_router
-from app.utils import (
-    custom_http_exception_handler,
-    custom_general_exception_handler,
+from app.core.exceptions import (
+    http_exception_handler,
+    notification_exception_handler,
+    unhandled_exception_handler,
+    validation_exception_handler,
 )
+from app.core.responses import success_response
+from app.notifications.errors import NotificationError
+from app.routers.legacy_email import legacy_email_router
+from app.routers.notifications import notifications_router
+
+logging.basicConfig(level=logging.INFO)
 
 app = FastAPI(
-    title="EmailService",
-    debug=1 if config.ENV == "development" else 0,
-    version="0.0.1",
+    title="NotificationService",
+    debug=config.ENV == "development",
+    version="1.0.0",
     description=config.DESCRIPTION,
     license_info={
         "name": "MIT License",
@@ -28,13 +38,22 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=config.ORIGINS.split(","),
+    allow_origins=[o for o in config.ORIGINS.split(",") if o],
     allow_credentials=True,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
-app.add_exception_handler(HTTPException, custom_http_exception_handler)
-app.add_exception_handler(AttributeError, custom_general_exception_handler)
+app.add_exception_handler(HTTPException, http_exception_handler)
+app.add_exception_handler(RequestValidationError, validation_exception_handler)
+app.add_exception_handler(NotificationError, notification_exception_handler)
+app.add_exception_handler(Exception, unhandled_exception_handler)
 
-app.include_router(email_router, tags=["Email"])
+app.include_router(notifications_router, tags=["Notifications"])
+app.include_router(legacy_email_router, tags=["Email (legacy)"])
+
+
+@app.get("/health", tags=["Health"])
+def health():
+    """Liveness check."""
+    return success_response(message="ok")
