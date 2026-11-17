@@ -1,44 +1,36 @@
 """
-For environment validation and constants
+Environment validation and app-wide settings.
+
+Template definitions live in `app/notifications/templates.py`.
 """
 
 import os
-from typing import cast
+from typing import Optional, cast
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 SWAGGER_APP_DESCRIPTION = """
-The EmailService is a lightweight application dedicated to sending 
-emails to recipients associated with Teamshiksha projects. 
+The NotificationService is a lightweight, shared service that delivers
+notifications for every TeamShiksha project. Email is supported today;
+the API is channel-agnostic so SMS, WhatsApp and push can be added as
+providers without changing callers.
 
-This service will be utilized by most projects, 
-so all email templates should be centralized within it, 
-along with maintaining updated mappings for unique template IDs.
+**New integrations** should call `POST /v1/notifications` with a template
+key such as `rsvp.update`. Every recipient gets their own message, so
+large audiences never share a single BCC'd email.
 
-How to use it ?
-1. Add your template in `templates` folder based on your project.
-2. Update the template and ID map given in `config` file.
-3. Add validation in the `SendEmailRequestBody` class inside `schemas/email` file.
+**Existing integrations** that call `POST /email` with a numeric template
+id keep working unchanged. Their `bcc` lists are delivered as individual
+messages behind the scenes.
+
+How to add a template:
+1. Add the file under `templates/<project>/`.
+2. Register it in `app/notifications/templates.py` with its required variables.
+
+See `DEVELOPMENT.md` and `docs/notification-service.md` for details.
 
 Code available `https://github.com/TeamShiksha/email-service`
 """
-
-TEMPLATE_HASH_MAP = {
-    1: "openlogo/ForgotPassword.html",
-    2: "openlogo/Verify.html",
-    3: "openlogo/Respond.html",
-    4: "rsvp/Verify.html",
-    5: "rsvp/ticket.html",
-    6: "rsvp/update.html",
-    7: "rsvp/invite.html",
-    8: "teamshiksha/ForgotPassword.html",
-    9: "teamshiksha/Welcome.html",
-    10: "teamshiksha/RequestSuccess.html",
-    11: "teamshiksha/RequestFail.html",
-    12: "teamshiksha/Assignment.html",
-    13: "swags.me/ForgotPassword.html",
-    14: "swags.me/Verify.html",
-}
 
 
 class Config(BaseSettings):
@@ -51,26 +43,47 @@ class Config(BaseSettings):
     # variables still take precedence, so hosted deployments are unaffected.
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-    EMAIL_PORT: int = cast(int, os.getenv("EMAIL_PORT", "587"))
-    EMAIL_HOST: str = cast(str, os.getenv("EMAIL_HOST", "smtp.gmail.com"))
-    EMAIL_ADDRESS: str = cast(str, os.getenv("EMAIL_ADDRESS"))
-    EMAIL_PASSWORD: str = cast(str, os.getenv("EMAIL_PASSWORD"))
-    APP_SECRET: str = cast(str, os.getenv("APP_SECRET"))
+    APP_SECRET: str  # required: shared secret callers send in Authorization
     ENV: str = cast(str, os.getenv("ENV", "development"))
-    ORIGINS: str = cast(str, os.getenv("ORIGINS"))
+    ORIGINS: str = cast(str, os.getenv("ORIGINS", ""))
     DESCRIPTION: str = SWAGGER_APP_DESCRIPTION
     PORT: int = cast(int, os.getenv("PORT", "8000"))
 
-    AWS_SECRET_KEY: str = cast(str, os.getenv("AWS_USER_SECRET_KEY"))
-    AWS_ACCESS_KEY: str = cast(str, os.getenv("AWS_USER_ACCESS_KEY"))
-    AWS_REGION: str = cast(str, os.getenv("AWS_REGION"))
-    AWS_EMAIL: str = cast(str, os.getenv("AWS_EMAIL"))
+    # Provider used when a request does not name one. SES matches the
+    # behaviour existing callers of POST /email rely on.
+    DEFAULT_EMAIL_PROVIDER: str = cast(str, os.getenv("DEFAULT_EMAIL_PROVIDER", "SES"))
+    # Upper bound on recipients in one request. Each recipient is a separate
+    # message, so this keeps a single request inside serverless time limits.
+    MAX_RECIPIENTS_PER_REQUEST: int = cast(
+        int, os.getenv("MAX_RECIPIENTS_PER_REQUEST", "500")
+    )
 
+    # Provider settings are optional: a provider is available only when
+    # its settings are present.
+
+    # Gmail / generic SMTP
+    EMAIL_PORT: int = cast(int, os.getenv("EMAIL_PORT", "587"))
+    EMAIL_HOST: str = cast(str, os.getenv("EMAIL_HOST", "smtp.gmail.com"))
+    EMAIL_ADDRESS: Optional[str] = os.getenv("EMAIL_ADDRESS")
+    EMAIL_PASSWORD: Optional[str] = os.getenv("EMAIL_PASSWORD")
+
+    # Amazon SES
+    AWS_SECRET_KEY: Optional[str] = os.getenv("AWS_USER_SECRET_KEY")
+    AWS_ACCESS_KEY: Optional[str] = os.getenv("AWS_USER_ACCESS_KEY")
+    AWS_REGION: Optional[str] = os.getenv("AWS_REGION")
+    AWS_EMAIL: Optional[str] = os.getenv("AWS_EMAIL")
+
+    # Autosend
     AUTOSEND_API_KEY: str = cast(str, os.getenv("AUTOSEND_API_KEY", ""))
     AUTOSEND_FROM_EMAIL: str = cast(str, os.getenv("AUTOSEND_FROM_EMAIL", ""))
     AUTOSEND_FROM_NAME: str = cast(str, os.getenv("AUTOSEND_FROM_NAME", ""))
     AUTOSEND_BASE_URL: str = cast(
         str, os.getenv("AUTOSEND_BASE_URL", "https://api.autosend.com/v1")
     )
+    # Autosend's documented default is 2 requests/second per API key.
+    AUTOSEND_REQUESTS_PER_SECOND: float = cast(
+        float, os.getenv("AUTOSEND_REQUESTS_PER_SECOND", "2")
+    )
+
 
 config = Config()

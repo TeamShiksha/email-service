@@ -1,0 +1,20 @@
+name: Tests
+on:
+  pull_request:
+  push:
+    branches: [main, prod]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      # Hash-locked and wheel-only: pins exact verified artifacts and never
+      # runs a package's setup script. Regenerate with:
+      #   pip-compile --generate-hashes --allow-unsafe --strip-extras -o requirements-dev.lock requirements-dev.txt
+      - run: pip install --require-hashes --only-binary :all: -r requirements-dev.lock
+      - run: python -m pytest -q
+      - run: pylint app --rcfile=.pylintrc
